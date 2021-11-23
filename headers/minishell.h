@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/22 23:42:32 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:28:09 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
  *	Functions per library:
  *		unistd.h:	write
  *		stdio.h:	printf
- *		stdlib.h:	malloc, free
+ *		stdlib.h:	malloc, free, getenv
  *		fcntl.h:	open
  *		stdbool:	bool type
  */
@@ -31,6 +31,7 @@
 # include <readline/history.h>
 
 # include <libft.h>
+# include <resources.h>
 
 typedef struct s_data {
 	char	*pwd;
@@ -40,5 +41,13 @@ typedef struct s_data {
 }				t_data;
 
 extern t_data	g_data;
+
+/* main.c*/
+
+void	init_data(void);
+
+/* prompt.c*/
+
+char	*get_prompt(void);
 
 #endif
