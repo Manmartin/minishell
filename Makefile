@@ -33,6 +33,8 @@ fclean: clean
 re: fclean all
 
 debug: CFLAGS += -g
-debug: all
+debug: $(OBJ)
+	$(MAKE) -C ./libft debug
+	$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $(NAME) $(LBLNK)
 
 .PHONY: all clean fclean re debug
