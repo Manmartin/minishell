@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/23 15:34:28 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:20:04 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ typedef struct s_data {
 }				t_data;
 
 extern t_data	g_data;
+
+/* main.c*/
+
+void init_data(void);
 
 /* prompt.c*/
 

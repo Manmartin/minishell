@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:05:49 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/23 18:06:51 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:22:53 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ char	*get_prompt(void)
 		if (*template == '-')
 		{
 			if (*(++template) == 'u')
-				prompt = str_append(prompt, getenv("USER"));
+				prompt = str_append(prompt, g_data.user);
 			else if (*template == 'p')
-				prompt = str_append(prompt, getenv("PWD"));
+				prompt = str_append(prompt, g_data.pwd);
 			else if (*template == '-')
 				prompt = str_append(prompt, "-");
 			template++;
