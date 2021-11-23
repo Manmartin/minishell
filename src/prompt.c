@@ -6,13 +6,13 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:05:49 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/23 22:22:53 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/23 22:48:08 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static char	*addchar(char *str1, const char c)
+static char	*char_append(char *str1, const char c)
 {
 	char	*aux;
 	char	*c_aux;
@@ -38,6 +38,25 @@ static char	*str_append(char *str1, const char *str2)
 	return (str1);
 }
 
+static char	*put_variables(const char *template, char *prompt)
+{
+	if (*template == 'u')
+		prompt = str_append(prompt, g_data.user);
+	else if (*template == 'p')
+		prompt = str_append(prompt, g_data.pwd);
+	else if (*template == '-')
+		prompt = str_append(prompt, "-");
+	else if (*template == 'r')
+		prompt = str_append(prompt, RED);
+	else if (*template == 'g')
+		prompt = str_append(prompt, GREEN);
+	else if (*template == 'b')
+		prompt = str_append(prompt, BLUE);
+	else if (*template == 'e')
+		prompt = str_append(prompt, RESET_COLOR);
+	return (prompt);
+}
+
 char	*get_prompt(void)
 {
 	char	*template;
@@ -50,17 +69,10 @@ char	*get_prompt(void)
 	while (*template)
 	{
 		if (*template == '-')
-		{
-			if (*(++template) == 'u')
-				prompt = str_append(prompt, g_data.user);
-			else if (*template == 'p')
-				prompt = str_append(prompt, g_data.pwd);
-			else if (*template == '-')
-				prompt = str_append(prompt, "-");
-			template++;
-		}
+			prompt = put_variables(++template, prompt);
 		else
-			prompt = addchar(prompt, *(template++));
+			prompt = char_append(prompt, *template);
+		template++;
 		if (prompt == NULL)
 			exit(-1);
 	}
