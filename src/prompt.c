@@ -15,16 +15,13 @@
 static char	*char_append(char *str1, const char c)
 {
 	char	*aux;
-	char	*c_aux;
+	char	c_aux[2];
 
 	aux = str1;
-	c_aux = ft_calloc(2, sizeof(char));
-	if (c_aux == NULL)
-		return (NULL);
 	c_aux[0] = c;
+	c_aux[1] = 0;
 	str1 = ft_strjoin(str1, c_aux);
 	free(aux);
-	free(c_aux);
 	return (str1);
 }
 
