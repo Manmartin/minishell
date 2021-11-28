@@ -21,9 +21,12 @@ void	init_data(void)
 	g_data.prompt = get_prompt();
 }
 
-int	main(void)
+int	main(int argc, char *argv[], char *env[])
 {
+	(void)argc;
+	(void)argv;
 	init_data();
+	get_env(env);
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);
