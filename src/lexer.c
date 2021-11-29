@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/29 23:24:19 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/30 00:05:04 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ t_list	*lexer(const char *const line)
 				flags.d_quotes = !flags.d_quotes;
 			i++;
 		}
-		ft_lstadd_back(&args, ft_lstnew(ft_substr(&line[origin], 0,
-					i - origin)));
+		if (i != origin)
+			ft_lstadd_back(&args, ft_lstnew(ft_substr(&line[origin], 0,
+						i - origin)));
 		while (ft_isforshell(line[i]))
 		{
 			if (line[i] != ' ')
