@@ -6,7 +6,8 @@ INC = -I ./headers -I libft/
 LBLNK = -l readline 
 
 SRC_F = main.c \
-		prompt.c
+		prompt.c \
+		lexer.c 
 SRC = $(addprefix src/, $(SRC_F))
 
 OBJ = $(SRC:.c=.o)
