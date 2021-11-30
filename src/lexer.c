@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/30 18:07:58 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/30 19:27:52 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static const char	*make_arg(const char *line, t_flags *flags)
 {
 	while ((!ft_isforshell(*line) || flags->d_qts || flags->s_qts) && *line)
 	{
-		if (*line == '\'')
+		if (*line == '\'' && !flags->d_qts)
 			flags->s_qts = !flags->s_qts;
-		else if (*line == '"')
+		else if (*line == '"' && !flags->s_qts)
 			flags->d_qts = !flags->d_qts;
 		line++;
 	}
