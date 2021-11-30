@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/30 12:44:57 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:07:58 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,24 @@ typedef struct s_flags {
 	bool	s_qts;
 }	t_flags;
 
+static int	add_arg(t_list **args, void *str)
+{
+	t_list	*new;
+
+	new = ft_lstnew(str);
+	if (!new || !str)
+		return (0);
+	ft_lstadd_back(args, new);
+	return (1);
+}
+
 static const char	*check_instructions(const char *line, t_list **args)
 {
 	while (ft_isforshell(*line))
 	{
 		if (*line != ' ')
-			ft_lstadd_back(args, ft_lstnew(ft_strdup("|")));
+			if (!(add_arg(args, ft_strdup("|"))))
+				return (0);
 		line++;
 	}
 	return (line);
@@ -51,6 +63,13 @@ static const char	*make_arg(const char *line, t_flags *flags)
 	return (line);
 }
 
+static t_list	*clean_args(t_list **args)
+{
+	ft_lstclear(args, free);
+	perror("lexer");
+	return (0);
+}
+
 t_list	*lexer(const char *line)
 {
 	char const	*init;
@@ -64,8 +83,11 @@ t_list	*lexer(const char *line)
 		init = line;
 		line = make_arg(line, &flags);
 		if (line != init)
-			ft_lstadd_back(&args, ft_lstnew(ft_substr(init, 0, line - init)));
+			if (!(add_arg(&args, ft_substr(init, 0, line - init))))
+				return (clean_args(&args));
 		line = check_instructions(line, &args);
+		if (!line)
+			return (clean_args(&args));
 	}
 	return (args);
 }
