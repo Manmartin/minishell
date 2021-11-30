@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/30 19:27:52 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/30 23:33:19 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,27 @@ static int	add_arg(t_list **args, void *str)
 
 static const char	*check_instructions(const char *line, t_list **args)
 {
+	char	*str;
+
+	str = NULL;
 	while (ft_isforshell(*line))
 	{
-		if (*line != ' ')
-			if (!(add_arg(args, ft_strdup("|"))))
+		if (*line == '|')
+			str = "|";
+		else if (ft_strncmp(line, ">>", 2) == 0)
+			str = ">>";
+		else if (ft_strncmp(line, "<<", 2) == 0)
+			str = "<<";
+		else if (*line == '<')
+			str = "<";
+		else if (*line == '>')
+			str = ">";
+		if (str)
+		{
+			if (!(add_arg(args, ft_strdup(str))))
 				return (0);
+			return (line + strlen(str));
+		}
 		line++;
 	}
 	return (line);
@@ -76,7 +92,7 @@ t_list	*lexer(const char *line)
 	t_list		*args;
 	t_flags		flags;
 
-	args = 0;
+	args = NULL;
 	ft_memset(&flags, 0, sizeof(t_flags));
 	while (*line)
 	{
