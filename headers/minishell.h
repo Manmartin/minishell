@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/29 17:12:49 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:04:16 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ char	*get_prompt(void);
 
 /* lexer.c */
 
-t_list	*lexer(const char *const line);
+t_list	*lexer(const char *line);
 
 #endif
