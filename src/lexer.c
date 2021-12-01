@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/30 23:33:19 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:14:04 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static const char	*check_instructions(const char *line, t_list **args)
 		{
 			if (!(add_arg(args, ft_strdup(str))))
 				return (0);
-			return (line + strlen(str));
+			return (line + ft_strlen(str));
 		}
 		line++;
 	}
