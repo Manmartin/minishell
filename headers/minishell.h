@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/28 18:38:17 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/12/01 13:36:25 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ void	get_env(char *env[]);
 /* prompt.c*/
 
 char	*get_prompt(void);
+
+/* lexer.c */
+
+t_list	*lexer(const char *line);
 
 #endif

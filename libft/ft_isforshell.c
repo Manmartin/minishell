@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isforshell.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/01 13:33:09 by manmarti         ###   ########.fr       */
+/*   Created: 2021/11/29 14:53:38 by manmarti          #+#    #+#             */
+/*   Updated: 2021/11/30 23:34:43 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <libft.h>
 
-t_data	g_data;
+/*
+ * Check if a character is a shell action or an arg separator
+ */
 
-void	init_data(void)
+int	ft_isforshell(char c)
 {
-	g_data.pwd = getenv("PWD");
-	g_data.user = getenv("USER");
-	g_data.prompt = get_prompt();
-}
-
-int	main(int argc, char *argv[], char *env[])
-{
-	(void)argc;
-	(void)argv;
-	get_env(env);
-	init_data();
-	while (true)
-	{
-		g_data.line = readline(g_data.prompt);
-		if (g_data.line)
-			print_list(lexer(g_data.line));
-		free(g_data.line);
-	}
+	if (c == '|' || c == ' ' || c == '>' || c == '<')
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 20:03:14 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/05/04 18:57:11 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:56:03 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void			ft_lstadd_front(t_list **alst, t_list *new);
 char			*ft_itoa_base(long long unsigned int n, int base,
 					char *elm_base);
 char			*ft_strchrs(const char *str, char *set);
+int				ft_isforshell(char c);
 
 #endif
