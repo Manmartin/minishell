@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/11/28 18:34:23 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:10:28 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	get_env(char **env)
+void	init_env(char **env)
 {
 	char	**tmp_env;
-	char	**tmp_envg;
 
-	tmp_env = env;
 	g_data.sz_env = 0;
-	while (*tmp_env++)
+	while (env[g_data.sz_env])
 		g_data.sz_env++;
-	g_data.sz_env = g_data.sz_env * 2;
+	g_data.sz_env *= 2;
 	g_data.env = ft_calloc(g_data.sz_env, sizeof(char *));
 	if (!g_data.env)
+	{
+		perror("init_env");
 		exit(0);
-	tmp_envg = g_data.env;
+	}
+	tmp_env = g_data.env;
 	while (*env)
-		*tmp_envg++ = *env++;
+		*tmp_env++ = ft_strdup(*env++);
 }

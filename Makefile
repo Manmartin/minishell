@@ -7,7 +7,7 @@ LBLNK = -l readline
 
 SRC_F = main.c \
 		prompt.c \
-		get_env.c \
+		env.c \
 		lexer.c
 
 SRC = $(addprefix src/, $(SRC_F))
