@@ -36,7 +36,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += -g
+debug: CFLAGS = -Wall -Wextra -Werror -g
 debug: $(OBJ)
 	$(MAKE) -C ./libft debug
 	$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $(NAME) $(LBLNK)

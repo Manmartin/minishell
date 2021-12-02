@@ -32,7 +32,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += -g
-debug: all	
+debug: CFLAGS = -Wall -Wextra -Werror -g
+debug: all
 
 .PHONY: all clean fclean re debug
