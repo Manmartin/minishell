@@ -6,11 +6,26 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/12/02 11:13:24 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:48:12 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+void	free_env(void)
+{
+	int	i;
+
+	i = -1;
+	while (g_data.env[++i])
+		free(g_data.env[i]);
+	free(g_data.env);
+}
+
+/*	get_env return value of a env variable "str"
+ * 		-If that variable does not exist, return a empty string
+ * 		-If malloc fails, return 0
+ */
 
 char	*get_env(const char *const str)
 {
@@ -47,6 +62,13 @@ void	init_env(char **env)
 	tmp_env = g_data.env;
 	while (*env)
 	{
-		*tmp_env++ = ft_strdup(*env++);
+		*tmp_env = ft_strdup(*env++);
+		if (!*tmp_env)
+		{
+			free_env();
+			perror("init_env");
+			exit(0);
+		}
+		tmp_env++;
 	}
 }
