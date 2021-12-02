@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/01 17:08:20 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/12/02 11:11:28 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ t_data	g_data;
 
 void	init_data(void)
 {
-	g_data.pwd = getenv("PWD");
-	g_data.user = getenv("USER");
+	g_data.pwd = get_env("PWD");
+	g_data.user = get_env("USER");
 	g_data.prompt = get_prompt();
 }
 
