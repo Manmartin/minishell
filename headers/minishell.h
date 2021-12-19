@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/02 00:42:43 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/12/19 19:26:39 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ char	*get_prompt(void);
 
 t_list	*lexer(const char *line);
 
+/* parser.c */
+char	**parser(t_list *tokens);
 #endif

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/02 11:11:28 by manmarti         ###   ########.fr       */
+/*   Updated: 2021/12/19 19:29:01 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_data(void)
 
 int	main(int argc, char *argv[], char *env[])
 {
+	t_list	 *ret;
 	(void)argc;
 	(void)argv;
 	init_env(env);
@@ -31,8 +32,14 @@ int	main(int argc, char *argv[], char *env[])
 	{
 		g_data.line = readline(g_data.prompt);
 		if (g_data.line)
-			lexer(g_data.line);
+			ret = lexer(g_data.line);
+		parser(ret);
 		free(g_data.line);
+		while (ret)
+		{
+			printf("%s\n", (char *)ret->content);
+			ret = ret->next;
+		}
 	}
 	return (0);
 }
