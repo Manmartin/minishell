@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/12/20 22:59:17 by acrucesp         ###   ########.fr       */
+/*   Updated: 2021/12/28 21:58:50 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,40 +56,38 @@ int		count_nodes(t_list *tokens, int positions)
 	return (n_nodes);
 }
 
-t_list	*parser(t_list *tokens)
+int	parser(t_list *tokens)
 {
 	int		n_pipes;
 	int		i;
 	int		j;
-	int		k;
-	t_list	*cmds;
-	t_cmd	*cmd;
+	t_cmd	*cmds;
 
 	i = 0;
 	j = 0;
-	k = 0;
 	cmds = NULL;
-	cmd = NULL;
 	n_pipes = count_pipes(tokens);
-	while (i < n_pipes)
+	cmds = ft_calloc(sizeof(t_cmd), n_pipes);
+	while (tokens)
 	{
-		*cmd->argv = ft_calloc(sizeof(char), count_nodes(tokens, i++));
-		while (tokens && !k)
+		if (!(cmds[j]).argv)
+			(cmds[j]).argv = ft_calloc(sizeof(char *), count_nodes(tokens, i));
+		if (!ft_strncmp((char *)tokens->content, "|", 
+		ft_strlen((char *)tokens->content)))
 		{
-			if (ft_strnstr((char *)tokens->content, "|", 
-			ft_strlen((char *)tokens->content)))
-			{
-				k = 1;
-				tokens = tokens->next;
-			}
-			cmd->argv[j++] = (char *)tokens->content; 
-			tokens = tokens->next;
+			i = 0;
+			j++;
 		}
-		if (!cmds)
-			cmds = ft_lstnew(cmd);
-		k = 0;
+		else
+		{
+			(cmds[j]).argv[i] = ft_strdup((char *)tokens->content);
+			i++;
+		}
+		tokens = tokens->next;
 	}
+	printf("=>%s\n", (cmds[0]).argv[0]);
+	printf("=>%s\n", (cmds[1]).argv[0]);
 
 	printf("%d\n", n_pipes);
-	return (cmds);
+	return (1);
 }
