@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/01 13:14:04 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/10 15:22:56 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,9 @@ static const char	*make_arg(const char *line, t_flags *flags)
 static t_list	*clean_args(t_list **args)
 {
 	ft_lstclear(args, free);
+	free_data();
 	perror("lexer");
-	return (0);
+	exit(0);
 }
 
 t_list	*lexer(const char *line)
@@ -100,10 +101,10 @@ t_list	*lexer(const char *line)
 		line = make_arg(line, &flags);
 		if (line != init)
 			if (!(add_arg(&args, ft_substr(init, 0, line - init))))
-				return (clean_args(&args));
+				clean_args(&args);
 		line = check_instructions(line, &args);
 		if (!line)
-			return (clean_args(&args));
+			clean_args(&args);
 	}
 	return (args);
 }

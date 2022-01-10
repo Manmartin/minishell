@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/02 00:42:43 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:22:46 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,13 @@ extern t_data	g_data;
 /* main.c*/
 
 void	init_data(void);
+void	free_data(void);
 
 /* env.c */
 
 void	init_env(char **env);
 char	*get_env(const char *const str);
+void	free_env(void);
 
 /* prompt.c*/
 
@@ -60,5 +62,9 @@ char	*get_prompt(void);
 /* lexer.c */
 
 t_list	*lexer(const char *line);
+
+/* quote_checker.c */
+
+bool	quote_checker(t_list *tokens);
 
 #endif
