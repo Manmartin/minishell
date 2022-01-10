@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/10 15:22:56 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:43:48 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,7 @@
  *	lexer:
  *		receive a string as argument an return a linked list of strings for
  *		parser
- *
- *	t_flags disable line split while any quotes are open
- *		-d_qts: True if double quotes are open
- *		-s_qts: True if sigle quotes are open
  */
-
-typedef struct s_flags {
-	bool	d_qts;
-	bool	s_qts;
-}	t_flags;
 
 static int	add_arg(t_list **args, void *str)
 {

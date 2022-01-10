@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/10 16:20:44 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:45:20 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	main(int argc, char *argv[], char *env[])
 		if (g_data.line)
 		{
 			tokens = lexer(g_data.line);
+			free(g_data.line);
 			if (quote_checker(tokens))
 			{
 			}
-			free(g_data.line);
 		}
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/10 16:22:46 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/10 16:44:11 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ typedef struct s_data {
 	char	*user;
 	char	*line;
 }				t_data;
+
+/*
+ *	t_flags disable line split while any quotes are open
+ *		-d_qts: True if double quotes are open
+ *		-s_qts: True if sigle quotes are open
+*/
+
+typedef struct s_flags {
+	bool	d_qts;
+	bool	s_qts;
+}	t_flags;
 
 extern t_data	g_data;
 
