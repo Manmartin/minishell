@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 20:03:14 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/11/29 14:56:03 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/12 13:59:20 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct s_list
 {
@@ -77,5 +78,6 @@ char			*ft_itoa_base(long long unsigned int n, int base,
 					char *elm_base);
 char			*ft_strchrs(const char *str, char *set);
 int				ft_isforshell(char c);
+bool			ft_isenv(const char c);
 
 #endif
