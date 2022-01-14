@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/12 16:42:37 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/14 14:18:43 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,21 @@ void	expand_env(t_list *tokens)
 {
 	char	*aux;
 	int		i;
+	t_flags	flags;
+	
 
 	i = 0;
+	ft_memset(&flags, 0, sizeof(t_flags));
 	while (tokens)
 	{
 		aux = tokens->content;
 		while (aux[i])
 		{
-			if (aux[i] == '$' && ft_isenv(aux[i + 1]))
+			if (aux[i] == '\'' && !flags.d_qts)
+				flags.s_qts = !flags.s_qts;
+			else if (aux[i] == '"' && !flags.s_qts)
+				flags.d_qts = !flags.d_qts;
+			if (aux[i] == '$' && ft_isenv(aux[i + 1]) && !flags.s_qts)
 				i = select_env(&aux, i + 1) - 1;
 			i++;
 		}
