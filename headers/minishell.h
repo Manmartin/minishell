@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 11:41:05 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:14:30 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ bool	quote_checker(t_list *tokens);
 /* expand_env.c */
 
 void	expand_env(t_list *tokens);
+void	exit_error(char *msg);
 
 /* quote_remover.c */
 

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:21:44 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 14:48:24 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:15:13 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int	remove_quotes(char **s, int *init, int *end)
 	int		return_value;
 
 	new_str = ft_calloc(sizeof(char), ft_strlen(*s) - 1);
+	if (new_str == NULL)
+		exit_error("malloc");
 	i = 0;
 	j = 0;
 	while ((*s)[i])

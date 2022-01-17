@@ -6,13 +6,13 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 13:56:48 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:13:08 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static void	exit_error(char *msg)
+void	exit_error(char *msg)
 {
 	perror(msg);
 	exit(0);
