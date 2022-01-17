@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/14 14:18:43 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:56:48 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	expand_env(t_list *tokens)
 	char	*aux;
 	int		i;
 	t_flags	flags;
-	
 
 	i = 0;
 	ft_memset(&flags, 0, sizeof(t_flags));
@@ -82,6 +81,7 @@ void	expand_env(t_list *tokens)
 		}
 		i = 0;
 		tokens->content = aux;
+		quote_remover((char **)&tokens->content);
 		tokens = tokens->next;
 	}
 }
