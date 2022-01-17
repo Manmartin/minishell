@@ -6,24 +6,25 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 11:21:44 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 13:58:24 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 14:48:24 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	remove_quotes(char **s, int init, int end)
+static int	remove_quotes(char **s, int *init, int *end)
 {
 	char	*new_str;
 	int		i;
 	int		j;
+	int		return_value;
 
 	new_str = ft_calloc(sizeof(char), ft_strlen(*s) - 1);
 	i = 0;
 	j = 0;
 	while ((*s)[i])
 	{
-		if (i != init && i != end)
+		if (i != *init && i != *end)
 		{
 			new_str[j] = (*s)[i];
 			j++;
@@ -32,7 +33,19 @@ static int	remove_quotes(char **s, int init, int end)
 	}
 	free(*s);
 	*s = new_str;
-	return (end - 2);
+	return_value = *end - 2;
+	*init = -1;
+	*end = -1;
+	return (return_value);
+}
+
+static void	norm_fuction(bool *flag, int *init, int *end, int i)
+{
+	*flag = !*flag;
+	if (*init == -1)
+		*init = i;
+	else
+		*end = i;
 }
 
 void	quote_remover(char **str)
@@ -51,26 +64,12 @@ void	quote_remover(char **str)
 	while (aux[i])
 	{
 		if (aux[i] == '\'' && !flags.d_qts)
-		{
-			flags.s_qts = !flags.s_qts;
-			if (init == -1)
-				init = i;
-			else
-				end = i;
-		}
+			norm_fuction(&flags.s_qts, &init, &end, i);
 		else if (aux[i] == '"' && !flags.s_qts)
-		{
-			flags.d_qts = !flags.d_qts;
-			if (init == -1)
-				init = i;
-			else
-				end = i;
-		}
+			norm_fuction(&flags.d_qts, &init, &end, i);
 		if (end != -1)
 		{
-			i = remove_quotes(&aux, init, end);
-			init = -1;
-			end = -1;
+			i = remove_quotes(&aux, &init, &end);
 			*str = aux;
 		}
 		i++;
