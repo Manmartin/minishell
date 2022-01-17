@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 15:14:30 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 17:49:29 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <signal.h>
+# include <fcntl.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -86,5 +88,9 @@ void	exit_error(char *msg);
 /* quote_remover.c */
 
 void	quote_remover(char **str);
+
+/* signals.c */
+
+void	signals(void);
 
 #endif

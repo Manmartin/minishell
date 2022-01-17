@@ -11,7 +11,8 @@ SRC_F = main.c \
 		lexer.c \
 		quote_checker.c \
 		quote_remover.c \
-		expand_env.c 
+		expand_env.c \
+		signals.c
 		
 
 SRC = $(addprefix src/, $(SRC_F))

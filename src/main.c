@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/12 18:52:30 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/17 18:21:56 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@ void	free_data(void)
 
 int	main(int argc, char *argv[], char *env[])
 {
-	t_list	*tokens;
+	t_list				*tokens;
 
 	(void)argc;
 	(void)argv;
 	init_env(env);
 	init_data();
+	signals();
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);
@@ -53,6 +54,12 @@ int	main(int argc, char *argv[], char *env[])
 					tokens = tokens->next;
 				}
 			}
+		}
+		else
+		{
+			free_data();
+			write(1, "\n", 1);
+			return (0);
 		}
 	}
 	return (0);
