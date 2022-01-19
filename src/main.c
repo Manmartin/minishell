@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 18:21:56 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:48:17 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	main(int argc, char *argv[], char *env[])
 		else
 		{
 			free_data();
-			write(1, "\n", 1);
 			return (0);
 		}
 	}
