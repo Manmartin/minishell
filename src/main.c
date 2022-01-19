@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/19 14:48:17 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:58:18 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int argc, char *argv[], char *env[])
 		if (g_data.line)
 		{
 			tokens = lexer(g_data.line);
+			if (g_data.line[0] != '\0')
+				add_history(g_data.line);
 			free(g_data.line);
 			if (quote_checker(tokens))
 			{
