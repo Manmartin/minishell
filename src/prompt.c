@@ -6,24 +6,11 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:05:49 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/23 22:48:08 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/20 14:24:37 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-static char	*char_append(char *str1, const char c)
-{
-	char	*aux;
-	char	c_aux[2];
-
-	aux = str1;
-	c_aux[0] = c;
-	c_aux[1] = 0;
-	str1 = ft_strjoin(str1, c_aux);
-	free(aux);
-	return (str1);
-}
 
 static char	*str_append(char *str1, const char *str2)
 {

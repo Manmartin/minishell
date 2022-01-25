@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 15:13:08 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/20 14:22:11 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,6 @@ void	exit_error(char *msg)
 {
 	perror(msg);
 	exit(0);
-}
-
-static char	*append_string(char *s1, char *s2)
-{
-	char	*new_str;
-
-	if (!s1 || !s2)
-		exit_error("malloc");
-	new_str = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	if (!new_str)
-		exit_error("malloc");
-	return (new_str);
 }
 
 static int	select_env(char **s, int i)

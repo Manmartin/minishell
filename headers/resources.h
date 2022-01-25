@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/19 13:02:01 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:11:14 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@
 */
 
 # define PROMPT "-u:-p$ " 
+
+# define BUILTINS {"echo", "cd"}
 
 #endif

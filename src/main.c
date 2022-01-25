@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/19 14:58:18 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:14:33 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_data(void)
 	g_data.pwd = get_env("PWD");
 	g_data.user = get_env("USER");
 	g_data.prompt = get_prompt();
+	signals();
 }
 
 void	free_data(void)
@@ -37,7 +38,6 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	init_env(env);
 	init_data();
-	signals();
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);

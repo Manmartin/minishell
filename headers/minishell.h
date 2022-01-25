@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 17:49:29 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/20 14:51:23 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,29 @@
 # include <stdbool.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <dirent.h>
+# include <sys/wait.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
 
 # include <libft.h>
 # include <resources.h>
+
+enum	types {input, output, append, here_dcmnt };
+
+typedef struct	s_cmd {
+	t_list	*rdrcs;
+	char	**argv;
+	int		argc;
+}				t_cmd;
+
+typedef struct	s_rdrc {
+	enum	types type;
+	char	*file;
+}				t_rdrc;
+
+
 
 typedef struct s_data {
 	char	*pwd;
@@ -92,5 +109,16 @@ void	quote_remover(char **str);
 /* signals.c */
 
 void	signals(void);
+
+/* executor.c */
+
+//void	executor(s_cmd *cmd);
+
+char	*get_path(const char *const cmd);
+
+/* strings.c */
+
+char	*append_string(char *s1, char *s2);
+char	*char_append(char *str1, const char c);
 
 #endif

@@ -12,10 +12,13 @@ SRC_F = main.c \
 		quote_checker.c \
 		quote_remover.c \
 		expand_env.c \
-		signals.c
-		
+		signals.c \
+		executor.c
+
+AUX_F = strings.c
 
 SRC = $(addprefix src/, $(SRC_F))
+SRC += $(addprefix src/aux/, $(AUX_F))
 
 OBJ = $(SRC:.c=.o)
 
