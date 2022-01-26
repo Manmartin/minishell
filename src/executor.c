@@ -6,7 +6,7 @@
 /*   By: manmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/26 12:24:54 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 15:00:11 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 bool	is_builtin(const char *const cmd)
 {
-	if (!ft_strncmp("echo", cmd, 5))
-		return (true);
-	else if (!ft_strncmp("cd", cmd, 3))
-		return (true);
-	else if (!ft_strncmp("pwd", cmd, 4))
-		return (true);
-	else if (!ft_strncmp("export", cmd, 7))
-		return (true);
-	else if (!ft_strncmp("unset", cmd, 6))
-		return (true);
-	else if (!ft_strncmp("env", cmd, 4))
-		return (true);
-	else if (!ft_strncmp("exit", cmd, 5))
-		return (true);
+	size_t	i;
+	char 	*builtins[N_BUILTINS] = {"echo", "cd", "pwd",
+		"export", "unset", "env", "exit"};
+
+	i = -1;
+	while (++i < N_BUILTINS)
+		if (!ft_strncmp(cmd, builtins[i], ft_strlen(cmd) + 1))
+			return (true);
 	return (false);
 }
 

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/26 12:29:17 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:59:15 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,10 @@ char	*get_path(const char *const cmd);
 
 char	*append_string(char *s1, char *s2);
 char	*char_append(char *str1, const char c);
+
+/* executor.c */
+	
+bool	is_builtin(const char *const cmd);
 
 /* get_path.c */
 
