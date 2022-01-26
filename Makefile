@@ -13,7 +13,8 @@ SRC_F = main.c \
 		quote_remover.c \
 		expand_env.c \
 		signals.c \
-		executor.c
+		executor.c \
+		get_path.c \
 
 AUX_F = strings.c
 

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/25 15:14:33 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:58:16 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	init_env(env);
 	init_data();
+	exit(0);
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);

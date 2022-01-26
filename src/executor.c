@@ -6,7 +6,7 @@
 /*   By: manmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/20 15:09:56 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:24:54 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,42 +29,6 @@ bool	is_builtin(const char *const cmd)
 	else if (!ft_strncmp("exit", cmd, 5))
 		return (true);
 	return (false);
-}
-
-char	*get_path(const char *const cmd)
-{
-	char	**paths;
-	char	*path;
-	int		i;
-	DIR		*dir;
-	struct dirent	*dirp;
-
-	i = 0;
-	if (cmd[0] == '/' || !ft_strncmp(cmd, "./", 2) || !ft_strncmp(cmd, "../", 3))
-		return (ft_strdup(cmd));
-	path = get_env("PATH"); 
-	paths = ft_split(path, ':');
-	if (paths == NULL)
-		exit_error("malloc");
-	while (paths[i])
-	{
-		dir = opendir(paths[i]);	
-		while ((dirp = readdir(dir)) != NULL)
-		{
-			if (!ft_strncmp(dirp->d_name, cmd, 256))
-			{
-				printf("%s\n", paths[i]);
-				exit(0);
-			}
-		}
-		closedir(dir);
-		i++;
-	}
-	i = 0;
-	while (paths[i])
-		free(paths[i++]);
-	free(paths);
-	return (path);
 }
 
 /*
