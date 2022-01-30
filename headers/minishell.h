@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2021/12/28 21:01:13 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/01/30 20:41:20 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # include <libft.h>
 # include <resources.h>
 
-enum	types {input, output, append, here_dcmnt }; 
+#define TYPES ">,>>,<,<<"
 
 typedef struct	s_cmd {
 	t_list	*rdctns;
@@ -42,7 +42,7 @@ typedef struct	s_cmd {
 }				t_cmd;
 
 typedef struct	s_rdctns {
-	enum	types type;
+	char 	*type;
 	char	*file;
 }				t_rdnctns;
 
