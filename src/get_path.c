@@ -6,11 +6,26 @@
 /*   By: manmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/26 12:57:07 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/03 15:57:26 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static char	*create_path(const char *path, const char *cmd)
+{
+	char	*aux;
+	char	*cmd_path;
+
+	aux = ft_strjoin(path, "/");
+	if (aux == NULL)
+		exit_error("malloc");
+	cmd_path = ft_strjoin(aux, cmd);
+	free(aux);
+	if (cmd_path == NULL)
+		exit_error("malloc");
+	return (cmd_path);
+}
 
 static char	*get_dir(const char *path, const char *cmd)
 {
@@ -25,13 +40,12 @@ static char	*get_dir(const char *path, const char *cmd)
 	while (dirp != NULL)
 	{
 		// Hace falta manejar errores de opendir y de readdir();
-		if (!ft_strncmp(dirp->d_name, cmd, 256))
+		if (!ft_strncmp(dirp->d_name, cmd, ft_strlen(dirp->d_name) + 1))
 		{
-			aux = ft_strdup(path);
-			if (path == NULL)
-				exit(1);
-			closedir(dir);
-			return (aux);
+			aux = create_path(path, cmd);
+			if (!access(aux, X_OK))
+				return (aux);
+			free(aux);
 		}
 		dirp = readdir(dir);
 	}
@@ -53,6 +67,7 @@ char	*get_path(const char *const cmd)
 	paths = ft_split(path, ':');
 	if (paths == NULL || path == NULL)
 		exit_error("malloc");
+	free(path);
 	path = NULL;
 	while (paths[i] && path == NULL)
 		path = get_dir(paths[i++], cmd);

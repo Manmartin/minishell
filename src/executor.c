@@ -6,7 +6,7 @@
 /*   By: manmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/26 15:00:11 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/03 16:02:50 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ bool	is_builtin(const char *const cmd)
 	return (false);
 }
 
-/*
 void	executor(t_cmd *cmd)
 {
 	pid_t	pid;
@@ -35,16 +34,20 @@ void	executor(t_cmd *cmd)
 	while (cmd)
 	{
 		pathname = get_path(cmd->argv[0]); 
+		printf("%s\n",  pathname);
 		pid = fork();
 		if (pid == 0)
 		{
 			if (pathname)
 				execve(pathname, cmd->argv ,g_data.env);
+			else
+				printf("wrong\n");
 			perror("execve");
 			exit(-1);
 		}
-		waitpid(pid, &wstatus, 0);
-		i++;
+		else
+			waitpid(pid, &wstatus, 0);
+		exit(1);
 		if (pathname)
 		{
 			free(pathname);
@@ -53,4 +56,3 @@ void	executor(t_cmd *cmd)
 		cmd++;
 	}
 }
-*/
