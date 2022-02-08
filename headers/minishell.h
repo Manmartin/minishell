@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/30 20:41:20 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/06 18:40:33 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@
 #define TYPES ">,>>,<,<<"
 
 typedef struct	s_cmd {
-	t_list	*rdctns;
+	t_list	*rdtns;
 	char	**argv;
 	int		argc;
 }				t_cmd;
 
-typedef struct	s_rdctns {
+typedef struct	s_rdtns {
 	char 	*type;
 	char	*file;
-}				t_rdnctns;
+}				t_rdtns;
 
 typedef struct s_data {
 	char	*pwd;
