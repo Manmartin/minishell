@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/08 20:46:27 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/10 22:31:06 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,48 +60,47 @@ int		count_nodes(t_list *tokens, int positions)
 static int	add_arg(t_list **args, void *str, t_list **tokens)
 {
 	t_list		*new;
-	t_rdtns		rdtns;
+	t_rdtns		*rdtns;
 
-	rdtns.type = ft_strdup((char *)str);
+	rdtns = malloc(sizeof(t_rdtns));
+	rdtns->type = ft_strdup((char *)str);
+
 	*tokens = (*tokens)->next;
-	rdtns.file = ft_strdup((char *)(*tokens)->content);
-	*tokens = (*tokens)->next;
+	rdtns->file = ft_strdup((char *)(*tokens)->content);
 	//pasar tokens por referencia para asi poder conservar el avance y
 	//controlar el error
-	new = ft_lstnew((void *)&rdtns);
+	new = ft_lstnew(rdtns);
 	if (!new || !str)
 		return (0);
 	ft_lstadd_back(args, new);
 	return (1);
 }
 
-void	load_cmd(t_list *tokens, t_cmd **cmds, int i, int j)
+void	load_cmd(t_list **tokens, t_cmd **cmds, int i, int j)
 {
 	char 	**types;
 	int		y;
 	int		b;
-	t_rdtns temp;
+	t_rdtns *temp;
 
 	y = 0;
 	b = 1;
 	types = ft_split(TYPES, ',');
 	while (types[y])
 	{
-		if (ft_strnstr((char *)tokens->content, types[y],
-			ft_strlen((char *)tokens->content)))
+		if (ft_strnstr((char *)(*tokens)->content, types[y],
+			ft_strlen((char *)(*tokens)->content)))
 		{
-			if (!(cmds[j])->rdtns)
-				(cmds[j])->rdtns = 0;
-			add_arg(&(cmds[j])->rdtns, types[y], &tokens);
+			add_arg(&(cmds[j])->rdtns, types[y], tokens);
 			//el siguiente tiene que ser el fichero y si no error syntax
-			temp = *(t_rdtns *)(cmds[j])->rdtns->content;
-			printf("%s\n", temp.type);
+			temp = (t_rdtns *)(cmds[j]->rdtns->content);
+			printf("%s\n", (char *)temp->type);
 			b = 0;
 		}
 		y++;
 	}
 	if (b)
-		((*cmds)[j]).argv[i] = ft_strdup((char *)tokens->content);
+		((*cmds)[j]).argv[i] = ft_strdup((char *)(*tokens)->content);
 }
 
 int	parser(t_list *tokens)
@@ -129,7 +128,7 @@ int	parser(t_list *tokens)
 		}
 		else
 		{
-			load_cmd(tokens, &cmds, i, j);
+			load_cmd(&tokens, &cmds, i, j);
 			//load struct rdctns
 			i++;
 		}
