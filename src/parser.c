@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/10 22:31:06 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/11 23:17:04 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void	load_cmd(t_list **tokens, t_cmd **cmds, int i, int j)
 		if (ft_strnstr((char *)(*tokens)->content, types[y],
 			ft_strlen((char *)(*tokens)->content)))
 		{
-			add_arg(&(cmds[j])->rdtns, types[y], tokens);
+			add_arg(&(*cmds)[j].rdtns, types[y], tokens);
 			//el siguiente tiene que ser el fichero y si no error syntax
-			temp = (t_rdtns *)(cmds[j]->rdtns->content);
+			temp = (t_rdtns *)(*cmds)[j].rdtns->content;
 			printf("%s\n", (char *)temp->type);
 			b = 0;
 		}
