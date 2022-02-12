@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/26 14:30:06 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/13 00:00:46 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # define GREEN "\e[32m"
 # define BLUE "\e[34m" 
 # define RESET_COLOR "\e[0m"
+
+/* Pipes */
+
+#define READ_FD		0
+#define WRITE_FD	1
 
 /*	Prompt */
 /*	Prompt variables

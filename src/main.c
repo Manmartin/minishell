@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/11 20:40:16 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:50:05 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	free_data(void)
 int	main(int argc, char *argv[], char *env[])
 {
 	t_list				*tokens;
-	t_cmd				comando[5];
+	t_cmd				**comando;
 	char *r1[] = {"seq", "-500", "500", NULL};
 	char *r2[] = {"sort", "-R", NULL};
 	char *r3[] = {"head", "-n","20", NULL};
@@ -43,12 +43,14 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	init_env(env);
 	init_data();
-
-	comando[0].argv = r1;
-	comando[1].argv = r2;
-	comando[2].argv = r3;
-	comando[3].argv = r4;
-	comando[4].argv = NULL;
+	comando = malloc(sizeof(t_cmd *) * 5);
+	for (int i = 0; i < 5; i++)
+		comando[i] = malloc(sizeof(t_cmd));
+	comando[0]->argv = r1;
+	comando[1]->argv = r2;
+	comando[2]->argv = r3;
+	comando[3]->argv = r4;
+	comando[4] =  NULL;
 	executor(comando);
 	exit(0);
 	while (true)

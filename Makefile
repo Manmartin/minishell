@@ -3,7 +3,7 @@ NAME = minishell
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -O2
 INC = -I ./headers -I libft/
-LBLNK = -l readline 
+LBLNK = -l readline
 
 SRC_F = main.c \
 		prompt.c \
@@ -13,13 +13,15 @@ SRC_F = main.c \
 		quote_remover.c \
 		expand_env.c \
 		signals.c \
-		executor.c \
 		get_path.c \
+		builtins.c
 
 AUX_F = strings.c
+EXEC_F = executor.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/aux/, $(AUX_F))
+SRC += $(addprefix src/executor/, $(EXEC_F))
 
 OBJ = $(SRC:.c=.o)
 

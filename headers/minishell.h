@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/31 11:15:32 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/12 23:50:55 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,9 +122,12 @@ char	*append_string(char *s1, char *s2);
 char	*char_append(char *str1, const char c);
 
 /* executor.c */
-	
+
+void	executor(t_cmd	**cmd);
+
+/* builtins.c */
+
 bool	is_builtin(const char *const cmd);
-void	executor(t_cmd	*cmd);
 
 /* get_path.c */
 
