@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/11 23:17:04 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/12 13:30:35 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	load_cmd(t_list **tokens, t_cmd **cmds, int i, int j)
 	types = ft_split(TYPES, ',');
 	while (types[y])
 	{
-		if (ft_strnstr((char *)(*tokens)->content, types[y],
+		if (ft_strnstr(types[y], (char *)(*tokens)->content,
 			ft_strlen((char *)(*tokens)->content)))
 		{
 			add_arg(&(*cmds)[j].rdtns, types[y], tokens);
@@ -144,7 +144,7 @@ int	parser(t_list *tokens)
 		{
 			temp = (t_rdtns *)(cmds[i]).rdtns->content;
 			printf("%s, %s\n", temp->type, temp->file);
-			(*cmds).rdtns = (*cmds).rdtns->next;;
+			(cmds[i]).rdtns = (cmds[i]).rdtns->next;;
 		}
 		j = 0;
 		i++;
