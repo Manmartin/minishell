@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/12 13:30:35 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:37:27 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int		count_nodes(t_list *tokens, int positions)
 			return (n_nodes);
 		n_nodes++;
 		tokens = tokens->next;
-
 	}
 	printf("%i\n", n_nodes);
 	return (n_nodes);
@@ -66,9 +65,9 @@ static int	add_arg(t_list **args, void *str, t_list **tokens)
 	rdtns->type = ft_strdup((char *)str);
 
 	*tokens = (*tokens)->next;
+	if (!r_syntax_errors(tokens))
+		return (0);
 	rdtns->file = ft_strdup((char *)(*tokens)->content);
-	//pasar tokens por referencia para asi poder conservar el avance y
-	//controlar el error
 	new = ft_lstnew(rdtns);
 	if (!new || !str)
 		return (0);
@@ -76,7 +75,7 @@ static int	add_arg(t_list **args, void *str, t_list **tokens)
 	return (1);
 }
 
-void	load_cmd(t_list **tokens, t_cmd **cmds, int i, int j)
+int	load_cmd(t_list **tokens, t_cmd **cmds, int *i, int j)
 {
 	char 	**types;
 	int		y;
@@ -91,16 +90,22 @@ void	load_cmd(t_list **tokens, t_cmd **cmds, int i, int j)
 		if (ft_strnstr(types[y], (char *)(*tokens)->content,
 			ft_strlen((char *)(*tokens)->content)))
 		{
-			add_arg(&(*cmds)[j].rdtns, types[y], tokens);
+			if (add_arg(&(*cmds)[j].rdtns, types[y], tokens))
 			//el siguiente tiene que ser el fichero y si no error syntax
-			temp = (t_rdtns *)(*cmds)[j].rdtns->content;
-			printf("%s\n", (char *)temp->type);
+			{
+				temp = (t_rdtns *)(*cmds)[j].rdtns->content;
+				printf("%s\n", (char *)temp->type);
+				(*i)--;
+			}
+			else
+				return (1);
 			b = 0;
 		}
 		y++;
 	}
 	if (b)
-		((*cmds)[j]).argv[i] = ft_strdup((char *)(*tokens)->content);
+		((*cmds)[j]).argv[*i] = ft_strdup((char *)(*tokens)->content);
+	return (0);
 }
 
 int	parser(t_list *tokens)
@@ -108,35 +113,41 @@ int	parser(t_list *tokens)
 	int		n_pipes;
 	int		i;
 	int		j;
+	int		out;
 	t_cmd	*cmds;
 	t_rdtns *temp;
 
 	i = 0;
 	j = 0;
+	out = 0;
 	cmds = NULL;
 	n_pipes = count_pipes(tokens);
 	cmds = ft_calloc(sizeof(*cmds), n_pipes + 1);
-	while (tokens)
+	while (tokens && !out)
 	{
 		if (!(cmds[j]).argv)
 			(cmds[j]).argv = ft_calloc(sizeof(char *), count_nodes(tokens, i) + 1);
 		if (ft_strnstr((char *)tokens->content, "|", 
 		ft_strlen((char *)tokens->content)))
 		{
+			if (!p_syntax_errors(tokens, 0))
+				out = 1;
 			i = 0;
 			j++;
 		}
 		else
 		{
-			load_cmd(&tokens, &cmds, i, j);
+			if (load_cmd(&tokens, &cmds, &i, j))
+				out = 1;	
 			//load struct rdctns
 			i++;
 		}
-		tokens = tokens->next;
+		if (!out)
+			tokens = tokens->next;
 	}
 	i = 0;
 	j = 0;
-	while (i < n_pipes + 1)
+	while (i < n_pipes + 1 && out == 0)
 	{
 		while ((cmds[i]).argv[j])
 			printf("%i=>%s\n", i, (cmds[i]).argv[j++]);

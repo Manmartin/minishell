@@ -9,7 +9,8 @@ SRC_F = main.c \
 		prompt.c \
 		env.c \
 		lexer.c \
-		parser.c
+		parser.c \
+		syntax_errors.c 
 
 SRC = $(addprefix src/, $(SRC_F))
 

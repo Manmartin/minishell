@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/06 18:40:33 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/12 21:29:19 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,6 @@ t_list	*lexer(const char *line);
 
 /* parser.c */
 int		parser(t_list *tokens);
+int		r_syntax_errors(t_list **tokens);
+int		p_syntax_errors(t_list *tokens, int from);
 #endif
