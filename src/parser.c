@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/12 21:37:27 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:25:15 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		count_pipes(t_list *tokens)
 	n_cmds = 0;
 	while (tokens)
 	{
-	//aun tengo que evaluar casos raros estilo echa a| > c como reacciona bash
 		if (ft_strnstr((char *)tokens->content, "|", 
 		ft_strlen((char *)tokens->content)))
 			n_cmds++;
@@ -52,7 +51,6 @@ int		count_nodes(t_list *tokens, int positions)
 		n_nodes++;
 		tokens = tokens->next;
 	}
-	printf("%i\n", n_nodes);
 	return (n_nodes);
 }
 
@@ -91,10 +89,8 @@ int	load_cmd(t_list **tokens, t_cmd **cmds, int *i, int j)
 			ft_strlen((char *)(*tokens)->content)))
 		{
 			if (add_arg(&(*cmds)[j].rdtns, types[y], tokens))
-			//el siguiente tiene que ser el fichero y si no error syntax
 			{
 				temp = (t_rdtns *)(*cmds)[j].rdtns->content;
-				printf("%s\n", (char *)temp->type);
 				(*i)--;
 			}
 			else
@@ -138,28 +134,11 @@ int	parser(t_list *tokens)
 		else
 		{
 			if (load_cmd(&tokens, &cmds, &i, j))
-				out = 1;	
-			//load struct rdctns
+				out = 1;
 			i++;
 		}
 		if (!out)
 			tokens = tokens->next;
 	}
-	i = 0;
-	j = 0;
-	while (i < n_pipes + 1 && out == 0)
-	{
-		while ((cmds[i]).argv[j])
-			printf("%i=>%s\n", i, (cmds[i]).argv[j++]);
-		while ((cmds[i]).rdtns)
-		{
-			temp = (t_rdtns *)(cmds[i]).rdtns->content;
-			printf("%s, %s\n", temp->type, temp->file);
-			(cmds[i]).rdtns = (cmds[i]).rdtns->next;;
-		}
-		j = 0;
-		i++;
-	}
-	//printf("%d\n", n_pipes);
 	return (1);
 }

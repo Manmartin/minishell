@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resources.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2021/11/23 22:54:44 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:28:17 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 # define GREEN "\e[32m"
 # define BLUE "\e[34m" 
 # define RESET_COLOR "\e[0m"
+
+/* Parser redirections */
+
+#define TYPES ">,>>,<,<<"
 
 /*	Prompt */
 /*	Prompt variables
