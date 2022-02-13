@@ -12,8 +12,9 @@ SRC_F = main.c \
 		quote_checker.c \
 		quote_remover.c \
 		expand_env.c \
-		signals.c
-		
+		signals.c \
+		parser.c \
+		syntax_errors.c
 
 SRC = $(addprefix src/, $(SRC_F))
 
@@ -41,7 +42,7 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS = -Wall -Wextra -Werror -g
+debug: CFLAGS = -Wall -Wextra -Werror -g3 
 debug: $(OBJ)
 	$(MAKE) -C ./libft debug
 	$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $(NAME) $(LBLNK)

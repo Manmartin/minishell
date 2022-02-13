@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/19 14:58:18 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:57:13 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	free_data(void)
 int	main(int argc, char *argv[], char *env[])
 {
 	t_list				*tokens;
+	t_cmd				**cmds;
 
 	(void)argc;
 	(void)argv;
@@ -49,6 +50,8 @@ int	main(int argc, char *argv[], char *env[])
 			free(g_data.line);
 			if (quote_checker(tokens))
 			{
+				cmds = parser(tokens);
+				printf("%s\n", cmds[0]->argv[0]);
 				expand_env(tokens);
 				while (tokens)
 				{

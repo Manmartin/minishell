@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 17:49:29 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/13 10:55:05 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@
 
 # include <libft.h>
 # include <resources.h>
+
+#define TYPES ">,>>,<,<<"
+
+typedef struct	s_cmd {
+	t_list	*rdtns;
+	char	**argv;
+	int		argc;
+}				t_cmd;
+
+typedef struct	s_rdtns {
+	char 	*type;
+	char	*file;
+}				t_rdtns;
 
 typedef struct s_data {
 	char	*pwd;
@@ -92,5 +105,10 @@ void	quote_remover(char **str);
 /* signals.c */
 
 void	signals(void);
+
+/* parser.c */
+t_cmd	**parser(t_list *tokens);
+int		r_syntax_errors(t_list **tokens);
+int		p_syntax_errors(t_list *tokens, int from);
 
 #endif
