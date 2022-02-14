@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/12 21:50:05 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/14 20:53:05 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ int	main(int argc, char *argv[], char *env[])
 	comando[1]->argv = r2;
 	comando[2]->argv = r3;
 	comando[3]->argv = r4;
-	comando[4] =  NULL;
-	executor(comando);
-	exit(0);
+	comando[4] = NULL;
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);
@@ -65,12 +63,7 @@ int	main(int argc, char *argv[], char *env[])
 			if (quote_checker(tokens))
 			{
 				expand_env(tokens);
-				while (tokens)
-				{
-					printf("%s\n", (char *)(tokens->content));
-					tokens = tokens->next;
-				}
-
+				executor(comando);
 			}
 		}
 		else
