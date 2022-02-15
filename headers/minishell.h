@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/13 10:55:05 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/15 23:36:52 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # include <libft.h>
 # include <resources.h>
 
-#define TYPES ">,>>,<,<<"
+# define TYPES ">,>>,<,<<"
 
 typedef struct	s_cmd {
 	t_list	*rdtns;
@@ -110,5 +110,8 @@ void	signals(void);
 t_cmd	**parser(t_list *tokens);
 int		r_syntax_errors(t_list **tokens);
 int		p_syntax_errors(t_list *tokens, int from);
+void	free_cmds(t_cmd **cmds, int j);
+void	free_redirections(void *redirections);
+void	free_types(char **types, int y);
 
 #endif

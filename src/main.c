@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/13 10:57:13 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/15 22:57:55 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	main(int argc, char *argv[], char *env[])
 			if (quote_checker(tokens))
 			{
 				cmds = parser(tokens);
-				printf("%s\n", cmds[0]->argv[0]);
+				//printf("%s\n", cmds[0]->argv[0]);
 				expand_env(tokens);
 				while (tokens)
 				{

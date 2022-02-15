@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/15 21:29:52 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/15 23:57:30 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,17 @@ int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 				(*i)--;
 			}
 			else
+			{
+				free_types(types, y);
 				return (1);
+			}
 			b = 0;
 		}
 		y++;
 	}
 	if (b)
 		cmds->argv[*i] = ft_strdup((char *)(*tokens)->content);
+	free_types(types, y);
 	return (0);
 }
 
@@ -130,6 +134,7 @@ t_cmd	**parser(t_list *tokens)
 		{
 			if (!p_syntax_errors(tokens, 0))
 			{
+				free_cmds(cmds, j);
 				cmds = NULL;
 			}
 			i = 0;
@@ -139,6 +144,7 @@ t_cmd	**parser(t_list *tokens)
 		{
 			if (load_cmd(&tokens, cmds[j], &i))
 			{
+			//	free_cmds(cmds, j);
 				cmds = NULL;
 			}
 			i++;
