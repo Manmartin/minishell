@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/13 11:01:51 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/15 21:29:52 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int	add_arg(t_list **args, void *str, t_list **tokens)
 	return (1);
 }
 
-int	load_cmd(t_list **tokens, t_cmd **cmds, int *i, int j)
+int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 {
 	char 	**types;
 	int		y;
@@ -88,9 +88,10 @@ int	load_cmd(t_list **tokens, t_cmd **cmds, int *i, int j)
 		if (ft_strnstr(types[y], (char *)(*tokens)->content,
 			ft_strlen((char *)(*tokens)->content)))
 		{
-			if (add_arg(&(*cmds)[j].rdtns, types[y], tokens))
+			if (add_arg(&(cmds->rdtns), types[y], tokens))
 			{
-				temp = (t_rdtns *)(*cmds)[j].rdtns->content;
+				temp = (t_rdtns *)cmds->rdtns->content;
+				printf("%s\n", temp->type);
 				(*i)--;
 			}
 			else
@@ -100,7 +101,7 @@ int	load_cmd(t_list **tokens, t_cmd **cmds, int *i, int j)
 		y++;
 	}
 	if (b)
-		((*cmds)[j]).argv[*i] = ft_strdup((char *)(*tokens)->content);
+		cmds->argv[*i] = ft_strdup((char *)(*tokens)->content);
 	return (0);
 }
 
@@ -136,7 +137,7 @@ t_cmd	**parser(t_list *tokens)
 		}
 		else
 		{
-			if (load_cmd(&tokens, cmds, &i, j))
+			if (load_cmd(&tokens, cmds[j], &i))
 			{
 				cmds = NULL;
 			}

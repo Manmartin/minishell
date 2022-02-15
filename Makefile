@@ -3,7 +3,7 @@ NAME = minishell
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -O2
 INC = -I ./headers -I libft/
-LBLNK = -l readline 
+LBLNK = -lreadline -L /Users/acrucesp/.brew/Cellar/readline/8.1.2/lib 
 
 SRC_F = main.c \
 		prompt.c \
@@ -25,13 +25,13 @@ LIBFT = ./libft/libft.a
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC) -c $^ -o $@
+	$(CC) $(CFLAGS) $(INC) -I  /Users/acrucesp/.brew/Cellar/readline/8.1.2/include -c $^ -o $@
 
 $(LIBFT):
 	$(MAKE) -C ./libft
 
 $(NAME): $(OBJ) $(LIBFT)
-	$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $@ $(LBLNK)
+	$(CC) $(CFLAGS) $(INC) $(OBJ) $(LIBFT) -o $@ $(LBLNK) 
 
 clean:
 	rm -rf $(OBJ)
