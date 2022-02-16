@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/14 20:54:55 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/16 19:06:52 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	exec_command(t_cmd *cmd, char *pathname, int fd[2])
 {
 	if (cmd != NULL)
 		make_dup(fd, WRITE_FD, STDOUT_FILENO);
+	redirects(cmd->rdtns);
 	if (is_builtin(cmd->argv[0]))
 	{
 	}
@@ -38,7 +39,6 @@ static void	exec_command(t_cmd *cmd, char *pathname, int fd[2])
 /* 
 	-Meter la busqueda del pathname en la parte del parser
 	-Eliminar la n en cuanto deje de ser necesaria
-	-Hacerlo todo a traves de cmd y no con contadores
 */
 
 void	executor(t_cmd **cmd)
@@ -58,6 +58,8 @@ void	executor(t_cmd **cmd)
 		pid = fork();
 		if (pid == 0)
 			exec_command(*cmd, pathname, fd1);
+		else if (pid == -1)
+			exit(errno);
 		while (*(++cmd) != NULL)
 		{
 			free(pathname); // Not needed line
@@ -68,6 +70,8 @@ void	executor(t_cmd **cmd)
 			pid = fork();
 			if (pid == 0)
 				exec_command(*cmd, pathname, fd1);
+			else if (pid == -1)
+				exit(-1);
 		}
 		for (int i = 0; i < n; i++)
 			wait(NULL);

@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/12 23:50:55 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/16 16:56:35 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # include <fcntl.h>
 # include <dirent.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
+# include <errno.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -37,20 +39,17 @@
 # include <libft.h>
 # include <resources.h>
 
-enum	types {input, output, append, here_dcmnt };
 
 typedef struct	s_cmd {
-	t_list	*rdrcs;
+	t_list	*rdtns;
 	char	**argv;
 	int		argc;
 }				t_cmd;
 
-typedef struct	s_rdrc {
-	enum	types type;
+typedef struct	s_rdtns {
+	char 	*type;
 	char	*file;
-}				t_rdrc;
-
-
+}				t_rdtns;
 
 typedef struct s_data {
 	char	*pwd;
@@ -124,6 +123,10 @@ char	*char_append(char *str1, const char c);
 /* executor.c */
 
 void	executor(t_cmd	**cmd);
+
+/* redirects.c*/
+
+void	redirects(t_list *rdrc);
 
 /* builtins.c */
 

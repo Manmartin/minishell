@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/20 14:22:11 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:19:54 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	exit_error(char *msg)
 {
 	perror(msg);
-	exit(0);
+	exit(1);
 }
 
 static int	select_env(char **s, int i)

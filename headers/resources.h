@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/13 00:00:46 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/16 19:29:33 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,19 @@
 
 /* Pipes */
 
-#define READ_FD		0
-#define WRITE_FD	1
+# define READ_FD	0
+# define WRITE_FD	1
+
+/* Parser Redirections */
+
+# define TYPES ">,>>,<,<<"
+
+/* Redirections: open flags */
+
+# define W_FLGS O_CREAT | O_WRONLY | O_TRUNC
+# define A_FLGS O_CREAT | O_WRONLY | O_APPEND
+# define I_FLGS O_RDONLY
+# define F_PERM S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH
 
 /*	Prompt */
 /*	Prompt variables

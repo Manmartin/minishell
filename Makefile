@@ -17,7 +17,7 @@ SRC_F = main.c \
 		builtins.c
 
 AUX_F = strings.c
-EXEC_F = executor.c
+EXEC_F = executor.c redirects.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/aux/, $(AUX_F))
