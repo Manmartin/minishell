@@ -12,14 +12,18 @@
 
 #include <minishell.h> 
 
-void	free_cmds(t_cmd **cmds, int j)
+void	free_cmds(t_cmd **cmds, int j, int n)
 {
-	while (j > -1)
+	while (--n >= 0)
 	{
-		ft_lstclear(&(cmds[j])->rdtns, &free_redirections);
-		free(cmds[j]->argv);
-		j--;
+		if (j <= n)
+		{
+			ft_lstclear(&(cmds[n])->rdtns, &free_redirections);
+			free(cmds[n]->argv);
+		}
+		free(cmds[n]);
 	}
+	free(cmds);
 }
 
 void free_redirections(void *redirections)
@@ -31,10 +35,13 @@ void free_redirections(void *redirections)
 	free(aux->file);
 }
 
-void free_types(char **types, int y)
+void free_types(char **types)
 {
-	while (y)
-		free(types[--y]);
+	int	y;
+
+	y = 4;
+	while (--y <= 0)
+		free(types[y]);
 	free(types);
 	types = NULL;
 }

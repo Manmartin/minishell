@@ -96,7 +96,7 @@ int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 			}
 			else
 			{
-				free_types(types, y);
+				free_types(types);
 				return (1);
 			}
 			b = 0;
@@ -105,7 +105,7 @@ int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 	}
 	if (b)
 		cmds->argv[*i] = ft_strdup((char *)(*tokens)->content);
-	free_types(types, y);
+	free_types(types);
 	return (0);
 }
 
@@ -128,13 +128,16 @@ t_cmd	**parser(t_list *tokens)
 	while (tokens && cmds)
 	{
 		if (!(cmds[j])->argv)
+		{
 			(cmds[j])->argv = ft_calloc(sizeof(char *), count_nodes(tokens, i) + 1);
+			(cmds[j])->argc = count_nodes(tokens, i) + 1;
+		}
 		if (ft_strnstr((char *)tokens->content, "|", 
 		ft_strlen((char *)tokens->content)))
 		{
 			if (!p_syntax_errors(tokens, 0))
 			{
-				free_cmds(cmds, j);
+				free_cmds(cmds, j, n_pipes);
 				cmds = NULL;
 			}
 			i = 0;
@@ -144,7 +147,7 @@ t_cmd	**parser(t_list *tokens)
 		{
 			if (load_cmd(&tokens, cmds[j], &i))
 			{
-			//	free_cmds(cmds, j);
+				free_cmds(cmds, j, n_pipes);
 				cmds = NULL;
 			}
 			i++;

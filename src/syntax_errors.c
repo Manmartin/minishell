@@ -23,7 +23,7 @@ int	r_syntax_errors(t_list **tokens)
 	{
 		write(STDERR_FILENO, "syntax error near unexpected token", 34);
 		write(STDERR_FILENO, "`newline'\n", 10);
-		free_types(types, y);
+		free_types(types);
 		return (0);
 	}
 	while (types[++y])
@@ -34,11 +34,11 @@ int	r_syntax_errors(t_list **tokens)
 			write(STDERR_FILENO, "syntax error near unexpected token `", 36);
 			write(STDERR_FILENO, types[y], ft_strlen(types[y]));
 			write(STDERR_FILENO, "'\n", 2);
-			free_types(types, y);
+			free_types(types);
 			return (0);
 		}
 	}
-	free_types(types, y);
+	free_types(types);
 	if (!p_syntax_errors(*tokens, 1))
 		return (0);
 	return (1);
