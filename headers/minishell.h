@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/16 16:56:35 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/18 09:46:38 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ char	*char_append(char *str1, const char c);
 /* executor.c */
 
 void	executor(t_cmd	**cmd);
+void	make_dup(int fd[2], int used, int dupped);
 
 /* redirects.c*/
 

@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/16 19:29:33 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/19 20:05:36 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define A_FLGS O_CREAT | O_WRONLY | O_APPEND
 # define I_FLGS O_RDONLY
 # define F_PERM S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH
+
+# define HERE_DOCS "/tmp/.tmpheredocsminishell"
 
 /*	Prompt */
 /*	Prompt variables
