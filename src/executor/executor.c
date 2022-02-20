@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 15:49:30 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 20:10:38 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,34 +51,37 @@ void	executor(t_cmd **cmd)
 {
 	pid_t	pid;
 	char	*pathname;
-	int		fd1[2];
+	int		fd1[2][2];
 	int		status;
 	int		n;
 
-	n = 1; // Not needed line
+	n = 4; // Not needed line
 	pathname = get_path((*cmd)->argv[0]); // Not needed line
 	if (cmd[1] != NULL)
-		pipe(fd1);
+		pipe(fd1[0]);
 	pid = fork();
 	if (pid == 0)
-		exec_command(cmd, pathname, fd1);
+		exec_command(cmd, pathname, fd1[0]);
 	else if (pid == -1)
 		exit(errno);
 	while (*(++cmd) != NULL)
 	{
 		free(pathname); // Not needed line
 		pathname = get_path((*cmd)->argv[0]); // Not needed line
-		close(fd1[WRITE_FD]);
+		close(fd1[0][WRITE_FD]);
 		if (cmd[1] != NULL)
-			pipe(fd1);
+			pipe(fd1[1]);
 		pid = fork();
 		if (pid == 0)
 		{
-			make_dup(fd1, READ_FD, STDIN_FILENO);
-			exec_command(cmd, pathname, fd1);
+			make_dup(fd1[0], READ_FD, STDIN_FILENO);
+			exec_command(cmd, pathname, fd1[1]);
 		}
 		else if (pid == -1)
 			exit(-1);
+		fd1[0][0] = fd1[1][0];
+		fd1[0][1] = fd1[1][1];
+		
 	}
 	for (int i = 0; i < n; i++)
 		wait(&status);
