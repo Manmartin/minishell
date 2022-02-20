@@ -12,20 +12,22 @@
 
 #include <minishell.h>
 
+static	int	msg_newline(char **types)
+{
+	write(STDERR_FILENO, "syntax error near unexpected token", 34);
+	write(STDERR_FILENO, "`newline'\n", 10);
+	return (!free_types(types));
+}
+
 int	r_syntax_errors(t_list **tokens)
 {	
-	char	**types;
 	int		y;
+	char	**types;
 
 	types = ft_split(TYPES, ',');
 	y = -1;
 	if (!*tokens)
-	{
-		write(STDERR_FILENO, "syntax error near unexpected token", 34);
-		write(STDERR_FILENO, "`newline'\n", 10);
-		free_types(types);
-		return (0);
-	}
+		return (msg_newline(types));
 	while (types[++y])
 	{
 		if (ft_strnstr(types[y], (char *)(*tokens)->content,
@@ -34,8 +36,7 @@ int	r_syntax_errors(t_list **tokens)
 			write(STDERR_FILENO, "syntax error near unexpected token `", 36);
 			write(STDERR_FILENO, types[y], ft_strlen(types[y]));
 			write(STDERR_FILENO, "'\n", 2);
-			free_types(types);
-			return (0);
+			return (!free_types(types));
 		}
 	}
 	free_types(types);

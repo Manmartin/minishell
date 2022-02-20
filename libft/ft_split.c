@@ -24,12 +24,11 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (0);
 	i = 0;
+	j = 0;
 	aux = ft_trimf(s, (char []){c, '\0'});
-	j = ft_nsep(aux, c);
-	ret = ft_calloc(sizeof(char *), j + 2);
+	ret = ft_calloc(sizeof(char *), ft_nsep(aux, c) + 2);
 	if (!ret)
 		return (0);
-	j = 0;
 	while (aux[j])
 	{
 		start = j;
@@ -39,5 +38,6 @@ char	**ft_split(char const *s, char c)
 		if (aux[j])
 			j++;
 	}
+	free(aux);
 	return (ret);
 }

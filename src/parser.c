@@ -12,7 +12,7 @@
 
 #include <minishell.h>
 
-int		count_pipes(t_list *tokens)
+static	int		count_pipes(t_list *tokens)
 {
 	int	n_cmds;
 
@@ -27,7 +27,7 @@ int		count_pipes(t_list *tokens)
 	return (n_cmds);
 }
 
-int		count_nodes(t_list *tokens, int positions)
+static	int		count_nodes(t_list *tokens, int positions)
 {
 	int	n_nodes;
 	int	exit;
@@ -54,7 +54,7 @@ int		count_nodes(t_list *tokens, int positions)
 	return (n_nodes);
 }
 
-static int	add_arg(t_list **args, void *str, t_list **tokens)
+static	int	add_arg(t_list **args, void *str, t_list **tokens)
 {
 	t_list		*new;
 	t_rdtns		*rdtns;
@@ -73,35 +73,26 @@ static int	add_arg(t_list **args, void *str, t_list **tokens)
 	return (1);
 }
 
-int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
+static	int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 {
 	char 	**types;
 	int		y;
 	int		b;
-	t_rdtns *temp;
 
-	y = 0;
+	y = -1;
 	b = 1;
 	types = ft_split(TYPES, ',');
-	while (types[y])
+	while (types[++y])
 	{
 		if (ft_strnstr(types[y], (char *)(*tokens)->content,
 			ft_strlen((char *)(*tokens)->content)))
 		{
 			if (add_arg(&(cmds->rdtns), types[y], tokens))
-			{
-				temp = (t_rdtns *)cmds->rdtns->content;
-				printf("%s\n", temp->type);
 				(*i)--;
-			}
 			else
-			{
-				free_types(types);
-				return (1);
-			}
+				return (free_types(types));
 			b = 0;
 		}
-		y++;
 	}
 	if (b)
 		cmds->argv[*i] = ft_strdup((char *)(*tokens)->content);
@@ -114,13 +105,10 @@ t_cmd	**parser(t_list *tokens)
 	int		n_pipes;
 	int		i;
 	int		j;
-	int		out;
 	t_cmd	**cmds;
 
 	i = 0;
 	j = 0;
-	out = 0;
-	cmds = NULL;
 	n_pipes = count_pipes(tokens);
 	cmds = ft_calloc(sizeof(*cmds), n_pipes + 1);
 	for (int k = 0; k <= n_pipes; k++)
@@ -129,27 +117,22 @@ t_cmd	**parser(t_list *tokens)
 	{
 		if (!(cmds[j])->argv)
 		{
-			(cmds[j])->argv = ft_calloc(sizeof(char *), count_nodes(tokens, i) + 1);
+			(cmds[j])->argv = ft_calloc(sizeof(char *),
+					count_nodes(tokens, i) + 1);
 			(cmds[j])->argc = count_nodes(tokens, i) + 1;
 		}
 		if (ft_strnstr((char *)tokens->content, "|", 
-		ft_strlen((char *)tokens->content)))
+			ft_strlen((char *)tokens->content)))
 		{
 			if (!p_syntax_errors(tokens, 0))
-			{
-				free_cmds(cmds, j, n_pipes);
-				cmds = NULL;
-			}
+				cmds = free_cmds(cmds, j, n_pipes + 1);
 			i = 0;
 			j++;
 		}
 		else
 		{
 			if (load_cmd(&tokens, cmds[j], &i))
-			{
-				free_cmds(cmds, j, n_pipes);
-				cmds = NULL;
-			}
+				cmds = free_cmds(cmds, j, n_pipes);
 			i++;
 		}
 		if (cmds)

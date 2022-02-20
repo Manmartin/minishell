@@ -110,8 +110,8 @@ void	signals(void);
 t_cmd	**parser(t_list *tokens);
 int		r_syntax_errors(t_list **tokens);
 int		p_syntax_errors(t_list *tokens, int from);
-void	free_cmds(t_cmd **cmds, int j, int n);
+t_cmd	**free_cmds(t_cmd **cmds, int j, int n);
 void	free_redirections(void *redirections);
-void	free_types(char **types);
+int		free_types(char **types);
 
 #endif

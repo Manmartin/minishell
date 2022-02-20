@@ -3,7 +3,7 @@ NAME = minishell
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -O2
 INC = -I ./headers -I libft/
-LBLNK = -lreadline -L /Users/acrucesp/.brew/Cellar/readline/8.1.2/lib 
+LBLNK = -l readline 
 
 SRC_F = main.c \
 		prompt.c \
@@ -26,7 +26,7 @@ LIBFT = ./libft/libft.a
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC) -I  /Users/acrucesp/.brew/Cellar/readline/8.1.2/include -c $^ -o $@
+	$(CC) $(CFLAGS) $(INC) -c $^ -o $@
 
 $(LIBFT):
 	$(MAKE) -C ./libft
@@ -43,6 +43,7 @@ fclean: clean
 
 re: fclean all
 
+#debug: CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 debug: CFLAGS = -Wall -Wextra -Werror -g3 
 debug: $(OBJ)
 	$(MAKE) -C ./libft debug
