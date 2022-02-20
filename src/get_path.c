@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/03 15:57:26 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/20 18:08:31 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static char	*get_dir(const char *path, const char *cmd)
 	dirp = readdir(dir);
 	while (dirp != NULL)
 	{
-		// Hace falta manejar errores de opendir y de readdir();
 		if (!ft_strncmp(dirp->d_name, cmd, ft_strlen(dirp->d_name) + 1))
 		{
 			aux = create_path(path, cmd);

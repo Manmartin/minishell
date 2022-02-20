@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 14:03:43 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 15:49:30 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static void	exec_command(t_cmd **cmd, char *pathname, int fd[2])
 	else if (pathname)
 	{
 		execve(pathname, cmd[0]->argv, g_data.env);
+	}
+	else
+	{
+		ft_putstr_fd(cmd[0]->argv[0], STDERR_FILENO);
+		ft_putendl_fd(": command not found", STDERR_FILENO);
 	}
 	exit(0);
 }
