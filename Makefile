@@ -8,22 +8,18 @@ LBLNK = -l readline
 SRC_F = main.c \
 		prompt.c \
 		env.c \
-		lexer.c \
-		quote_checker.c \
-		quote_remover.c \
 		expand_env.c \
 		signals.c \
-		parser.c \
-		syntax_errors.c \
-		free_cmds.c \
 		get_path.c
 
 AUX_F = strings.c
+PARSER_F = parser.c free_cmds.c syntax_errors.c quote_checker.c	quote_remover.c lexer.c
 EXEC_F = executor.c redirects.c
 BUILTINS_F = builtins.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/aux/, $(AUX_F))
+SRC += $(addprefix src/parser/, $(PARSER_F))
 SRC += $(addprefix src/executor/, $(EXEC_F))
 SRC += $(addprefix src/builtins/, $(BUILTINS_F))
 
