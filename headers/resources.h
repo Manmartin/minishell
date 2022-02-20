@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/19 20:05:36 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 14:28:57 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,7 @@
 
 # define TYPES ">,>>,<,<<"
 
-/* Redirections: open flags */
-
-# define W_FLGS O_CREAT | O_WRONLY | O_TRUNC
-# define A_FLGS O_CREAT | O_WRONLY | O_APPEND
-# define I_FLGS O_RDONLY
-# define F_PERM S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH
+/* Here docs temp file */
 
 # define HERE_DOCS "/tmp/.tmpheredocsminishell"
 

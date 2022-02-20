@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:52:37 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 13:59:53 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 14:31:42 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 static void	rdrc_append(char *pathname)
 {
 	int	fd;
+	int	mode;
+	int	perm;
 
-	fd = open(pathname, A_FLGS, F_PERM);
+	mode = O_CREAT | O_WRONLY | O_APPEND;
+	perm = S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH;
+	fd = open(pathname, mode, perm);
 	if (fd == -1)
 	{
 		perror("open");
@@ -29,8 +33,12 @@ static void	rdrc_append(char *pathname)
 static void	rdrc_in(char *pathname)
 {
 	int	fd;
+	int	mode;
+	int	perm;
 
-	fd = open(pathname, I_FLGS, F_PERM);
+	mode = O_RDONLY;
+	perm = S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH;
+	fd = open(pathname, mode, perm);
 	if (fd == -1)
 	{
 		perror("open");
@@ -44,12 +52,16 @@ static void	rdrc_here(char *limit)
 {
 	int		fd;
 	char	*str;
+	int		mode;
+	int		perm;
 
-	fd = open(HERE_DOCS, W_FLGS, F_PERM);
+	mode = O_CREAT | O_WRONLY | O_TRUNC;
+	perm = S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH;
+	fd = open(HERE_DOCS, mode, perm);
 	if (fd == -1)
 		exit_error("open");
 	str = readline("> ");
-	while (ft_strncmp(str, limit, ft_strlen(limit) + 1))
+	while (ft_strncmp(str, limit, ft_strlen(limit) + 1) && str)
 	{
 		ft_putstr_fd(str, fd);
 		ft_putchar_fd('\n', fd);
@@ -66,8 +78,12 @@ static void	rdrc_here(char *limit)
 static void	rdrc_out(char *pathname)
 {
 	int	fd;
+	int	mode;
+	int	perm;
 
-	fd = open(pathname, W_FLGS, F_PERM);
+	mode = O_CREAT | O_WRONLY | O_TRUNC;
+	perm = S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH;
+	fd = open(pathname, mode, perm);
 	if (fd == -1)
 	{
 		perror("open");
