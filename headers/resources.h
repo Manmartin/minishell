@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/13 10:35:45 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 20:36:27 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 
 #define TYPES ">,>>,<,<<"
 
+/* Pipes */
+
+# define READ_FD	0
+# define WRITE_FD	1
+
+/* Here docs temp file */
+
+# define HERE_DOCS "/tmp/.tmpheredocsminishell"
+
 /*	Prompt */
 /*	Prompt variables
  *		-u = user
@@ -37,5 +46,7 @@
 */
 
 # define PROMPT "-u:-p$ " 
+
+# define N_BUILTINS 7 
 
 #endif

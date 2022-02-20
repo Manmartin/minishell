@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/20 20:29:16 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 21:18:14 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ t_cmd	**parser(t_list *tokens)
 	i = 0;
 	j = 0;
 	n_pipes = count_pipes(tokens);
-	cmds = ft_calloc(sizeof(*cmds), n_pipes + 1);
-	for (int k = 0; k <= n_pipes; k++)
+	cmds = ft_calloc(sizeof(*cmds), n_pipes + 2);
+	for (int k = 0; k <= n_pipes + 1; k++)
 		cmds[k] = ft_calloc(sizeof(t_cmd), 1);
+	cmds[n_pipes + 1] = NULL;
 	while (tokens && cmds)
 	{
 		if (!(cmds[j])->argv)
@@ -138,6 +139,6 @@ t_cmd	**parser(t_list *tokens)
 		if (cmds)
 			tokens = tokens->next;
 	}
-	g_data.n_cmd = j;
+	g_data.n_cmd = j + 1;
 	return (cmds);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/17 15:13:08 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/16 17:19:54 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,7 @@
 void	exit_error(char *msg)
 {
 	perror(msg);
-	exit(0);
-}
-
-static char	*append_string(char *s1, char *s2)
-{
-	char	*new_str;
-
-	if (!s1 || !s2)
-		exit_error("malloc");
-	new_str = ft_strjoin(s1, s2);
-	free(s1);
-	free(s2);
-	if (!new_str)
-		exit_error("malloc");
-	return (new_str);
+	exit(1);
 }
 
 static int	select_env(char **s, int i)

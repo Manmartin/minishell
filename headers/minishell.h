@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 20:27:18 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 20:43:07 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@
 # include <stdbool.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <dirent.h>
+# include <sys/wait.h>
+# include <sys/stat.h>
+# include <errno.h>
 
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -35,16 +39,14 @@
 # include <libft.h>
 # include <resources.h>
 
-# define TYPES ">,>>,<,<<"
-
-typedef struct	s_cmd {
+typedef struct s_cmd {
 	t_list	*rdtns;
 	char	**argv;
 	int		argc;
 }				t_cmd;
 
-typedef struct	s_rdtns {
-	char 	*type;
+typedef struct s_rdtns {
+	char	*type;
 	char	*file;
 }				t_rdtns;
 
@@ -108,11 +110,44 @@ void	quote_remover(char **str);
 void	signals(void);
 
 /* parser.c */
+
 t_cmd	**parser(t_list *tokens);
-int		r_syntax_errors(t_list **tokens);
-int		p_syntax_errors(t_list *tokens, int from);
+
+/* free_cmds.c */
+
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n);
 void	free_redirections(void *redirections);
 int		free_types(char **types);
+
+/* systax_error.c */
+int		r_syntax_errors(t_list **tokens);
+int		p_syntax_errors(t_list *tokens, int from);
+
+/* get_path.c */
+
+char	*get_path(const char *const cmd);
+
+/* strings.c */
+
+char	*append_string(char *s1, char *s2);
+char	*char_append(char *str1, const char c);
+
+/* executor.c */
+
+void	executor(t_cmd	**cmd);
+void	make_dup(int fd[2], int used, int dupped);
+
+/* redirects.c*/
+
+void	redirects(t_list *rdrc);
+
+/* builtins.c */
+
+bool	is_builtin(const char *const cmd);
+void	exec_builtin(t_cmd *cmd);
+
+/* get_path.c */
+
+char	*get_path(const char *const cmd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 20:27:45 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 21:20:32 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_data(void)
 	g_data.user = get_env("USER");
 	g_data.n_cmd = 0;
 	g_data.prompt = get_prompt();
+	signals();
 }
 
 void	free_data(void)
@@ -39,7 +40,6 @@ int	main(int argc, char *argv[], char *env[])
 	(void)argv;
 	init_env(env);
 	init_data();
-	signals();
 	while (true)
 	{
 		g_data.line = readline(g_data.prompt);
@@ -52,13 +52,9 @@ int	main(int argc, char *argv[], char *env[])
 			if (quote_checker(tokens))
 			{
 				cmds = parser(tokens);
-				//printf("%s\n", cmds[0]->argv[0]);
 				expand_env(tokens);
-				while (tokens)
-				{
-					printf("%s\n", (char *)(tokens->content));
-					tokens = tokens->next;
-				}
+				if (cmds)
+					executor(cmds);
 			}
 		}
 		else
