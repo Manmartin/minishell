@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/18 09:46:38 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 14:14:06 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,14 @@
 # include <libft.h>
 # include <resources.h>
 
-
-typedef struct	s_cmd {
+typedef struct s_cmd {
 	t_list	*rdtns;
 	char	**argv;
 	int		argc;
 }				t_cmd;
 
-typedef struct	s_rdtns {
-	char 	*type;
+typedef struct s_rdtns {
+	char	*type;
 	char	*file;
 }				t_rdtns;
 
@@ -132,6 +131,7 @@ void	redirects(t_list *rdrc);
 /* builtins.c */
 
 bool	is_builtin(const char *const cmd);
+void	exec_builtin(t_cmd *cmd);
 
 /* get_path.c */
 

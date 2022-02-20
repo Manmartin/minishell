@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/19 19:50:30 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 14:03:43 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ static void	exec_command(t_cmd **cmd, char *pathname, int fd[2])
 		make_dup(fd, WRITE_FD, STDOUT_FILENO);
 	redirects(cmd[0]->rdtns);
 	if (is_builtin(cmd[0]->argv[0]))
-	{
-	}
+		exec_builtin(cmd[0]);
 	else if (pathname)
+	{
 		execve(pathname, cmd[0]->argv, g_data.env);
+	}
 	exit(0);
 }
 

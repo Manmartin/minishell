@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:52:37 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/19 20:13:44 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/20 13:59:53 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ static void	rdrc_here(char *limit)
 	if (fd == -1)
 		exit_error("open");
 	str = readline("> ");
-	while (ft_strncmp(str, limit, ft_strlen(limit) + 1) && str)
+	while (ft_strncmp(str, limit, ft_strlen(limit) + 1))
 	{
 		ft_putstr_fd(str, fd);
 		ft_putchar_fd('\n', fd);
 		free(str);
 		str = readline("> ");
+		if (!str)
+			exit_error("bash");
 	}
+	free(str);
 	close(fd);
 	rdrc_in(HERE_DOCS);
 }

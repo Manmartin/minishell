@@ -13,15 +13,16 @@ SRC_F = main.c \
 		quote_remover.c \
 		expand_env.c \
 		signals.c \
-		get_path.c \
-		builtins.c
+		get_path.c
 
 AUX_F = strings.c
 EXEC_F = executor.c redirects.c
+BUILTINS_F = builtins.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/aux/, $(AUX_F))
 SRC += $(addprefix src/executor/, $(EXEC_F))
+SRC += $(addprefix src/builtins/, $(BUILTINS_F))
 
 OBJ = $(SRC:.c=.o)
 
