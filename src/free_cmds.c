@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_cmds.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 22:18:52 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/15 23:57:27 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/20 20:30:32 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_cmd	**free_cmds(t_cmd **cmds, int j, int n)
 		free(cmds[n]);
 	}
 	free(cmds);
+	g_data.n_cmd = 0;
 	return (NULL);
 }
 

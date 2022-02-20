@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/15 22:57:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/20 20:27:45 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_data(void)
 {
 	g_data.pwd = get_env("PWD");
 	g_data.user = get_env("USER");
+	g_data.n_cmd = 0;
 	g_data.prompt = get_prompt();
 }
 

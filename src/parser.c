@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/15 23:57:30 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/20 20:29:16 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,6 @@ t_cmd	**parser(t_list *tokens)
 		if (cmds)
 			tokens = tokens->next;
 	}
+	g_data.n_cmd = j;
 	return (cmds);
 }
