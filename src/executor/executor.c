@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 13:52:32 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 14:33:55 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,32 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 	exit(0);
 }
 
+static void	wait_childs(void)
+{
+	int	i;
+	int	status;
+
+	i = 0;
+	while (i++ < g_data.n_cmd)
+		wait(&status);
+	init_data();
+}
+
+/* 
+**	This function should not exist
+**	Norminnete fault
+*/
+
+static void	im_sorry(t_cmd **cmd, int fd1[2][2])
+{
+	make_dup(fd1[0], READ_FD, STDIN_FILENO);
+	exec_command(cmd, fd1[1]);
+}
+
 void	executor(t_cmd **cmd)
 {
 	pid_t	pid;
 	int		fd1[2][2];
-	int		status;
 
 	if (cmd[1] != NULL)
 		pipe(fd1[0]);
@@ -63,17 +84,11 @@ void	executor(t_cmd **cmd)
 			pipe(fd1[1]);
 		pid = fork();
 		if (pid == 0)
-		{
-			make_dup(fd1[0], READ_FD, STDIN_FILENO);
-			exec_command(cmd, fd1[1]);
-		}
+			im_sorry(cmd, fd1);
 		else if (pid == -1)
 			exit(-1);
 		fd1[0][0] = fd1[1][0];
 		fd1[0][1] = fd1[1][1];
-		
 	}
-	for (int i = 0; i < g_data.n_cmd; i++)
-		wait(&status);
-	init_data();
+	wait_childs();
 }
