@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 10:23:47 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 13:32:48 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	free_data(void)
 	free(g_data.pwd);
 	free(g_data.user);
 	free(g_data.prompt);
+	rl_clear_history();
 	free_env();
 }
 
@@ -53,9 +54,9 @@ int	main(int argc, char *argv[], char *env[])
 		}
 		else
 		{
+			write(STDOUT_FILENO, "\n", 1);
 			free_data();
 			return (0);
 		}
 	}
-	return (0);
 }

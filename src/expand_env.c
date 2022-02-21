@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 12:56:49 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 13:23:37 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,57 +44,48 @@ static int	select_env(char **s, int i)
 	return (i - 1 + var_len);
 }
 
-void	expand_env(t_cmd **cmds)
+static char	*make_expanded_str(char **str)
 {
+	t_flags	flags;
 	char	*aux;
 	int		i;
-	int		j;
-	t_flags	flags;
-	t_list	*rdrc;
 
 	i = 0;
 	ft_memset(&flags, 0, sizeof(t_flags));
+	aux = *str;
+	while (aux[i])
+	{
+		if (aux[i] == '\'' && !flags.d_qts)
+			flags.s_qts = !flags.s_qts;
+		else if (aux[i] == '"' && !flags.s_qts)
+			flags.d_qts = !flags.d_qts;
+		if (aux[i] == '$' && ft_isenv(aux[i + 1]) && !flags.s_qts)
+			i = select_env(&aux, i + 1) - 1;
+		i++;
+	}
+	return (aux);
+}
+
+void	expand_env(t_cmd **cmds)
+{
+	int		j;
+	t_list	*rdrc;
+
 	while (*cmds)
 	{
 		j = 0;
-		aux = cmds[0]->argv[j];			
-		while (aux)
+		while (cmds[0]->argv[j])
 		{
-			while (aux[i])
-			{
-				if (aux[i] == '\'' && !flags.d_qts)
-					flags.s_qts = !flags.s_qts;
-				else if (aux[i] == '"' && !flags.s_qts)
-					flags.d_qts = !flags.d_qts;
-				if (aux[i] == '$' && ft_isenv(aux[i + 1]) && !flags.s_qts)
-					i = select_env(&aux, i + 1) - 1;
-				i++;
-			}
-			cmds[0]->argv[j] = aux;
+			cmds[0]->argv[j] = make_expanded_str(&cmds[0]->argv[j]);
 			quote_remover(&cmds[0]->argv[j]);
 			j++;
-			i = 0;
-			aux = cmds[0]->argv[j];
 		}
-		j = 0;
 		rdrc = cmds[0]->rdtns;
 		while (rdrc)
 		{
-			aux = ((t_rdtns *)rdrc->content)->file;
-			while (aux[i])
-			{
-				if (aux[i] == '\'' && !flags.d_qts)
-					flags.s_qts = !flags.s_qts;
-				else if (aux[i] == '"' && !flags.s_qts)
-					flags.d_qts = !flags.d_qts;
-				if (aux[i] == '$' && ft_isenv(aux[i + 1]) && !flags.s_qts)
-					i = select_env(&aux, i + 1) - 1;
-				i++;
-			}
-			((t_rdtns *)rdrc->content)->file = aux;
+			((t_rdtns *)rdrc->content)->file
+				= make_expanded_str(&((t_rdtns *)rdrc->content)->file);
 			quote_remover(&((t_rdtns *)rdrc->content)->file);
-			j++;
-			i = 0;
 			rdrc = rdrc->next;
 		}		
 		cmds++;
