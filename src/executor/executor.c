@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 21:01:42 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 13:52:32 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ void	make_dup(int fd[2], int used, int dupped)
 	pathname will be not needed
 */
 
-static void	exec_command(t_cmd **cmd, char *pathname, int fd[2])
+static void	exec_command(t_cmd **cmd, int fd[2])
 {
 	if (cmd[1] != NULL)
 		make_dup(fd, WRITE_FD, STDOUT_FILENO);
 	redirects(cmd[0]->rdtns);
 	if (is_builtin(cmd[0]->argv[0]))
 		exec_builtin(cmd[0]);
-	else if (pathname)
+	else if (cmd[0]->pathname)
 	{
-		execve(pathname, cmd[0]->argv, g_data.env);
+		execve(cmd[0]->pathname, cmd[0]->argv, g_data.env);
+		exit_error("execve");
 	}
 	else
 	{
@@ -42,30 +43,21 @@ static void	exec_command(t_cmd **cmd, char *pathname, int fd[2])
 	exit(0);
 }
 
-/* 
-	-Meter la busqueda del pathname en la parte del parser
-	-Eliminar la n en cuanto deje de ser necesaria
-*/
-
 void	executor(t_cmd **cmd)
 {
 	pid_t	pid;
-	char	*pathname;
 	int		fd1[2][2];
 	int		status;
 
-	pathname = get_path((*cmd)->argv[0]); // Not needed line
 	if (cmd[1] != NULL)
 		pipe(fd1[0]);
 	pid = fork();
 	if (pid == 0)
-		exec_command(cmd, pathname, fd1[0]);
+		exec_command(cmd, fd1[0]);
 	else if (pid == -1)
-		exit(errno);
+		exit_error("fork");
 	while (*(++cmd) != NULL)
 	{
-		free(pathname); // Not needed line
-		pathname = get_path((*cmd)->argv[0]); // Not needed line
 		close(fd1[0][WRITE_FD]);
 		if (cmd[1] != NULL)
 			pipe(fd1[1]);
@@ -73,7 +65,7 @@ void	executor(t_cmd **cmd)
 		if (pid == 0)
 		{
 			make_dup(fd1[0], READ_FD, STDIN_FILENO);
-			exec_command(cmd, pathname, fd1[1]);
+			exec_command(cmd, fd1[1]);
 		}
 		else if (pid == -1)
 			exit(-1);

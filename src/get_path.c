@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 18:08:31 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 13:53:59 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*get_dir(const char *path, const char *cmd)
 	return (NULL);
 }
 
-char	*get_path(const char *const cmd)
+static char	*get_path(const char *const cmd)
 {
 	char	**paths;
 	char	*path;
@@ -75,4 +75,13 @@ char	*get_path(const char *const cmd)
 		free(paths[i++]);
 	free(paths);
 	return (path);
+}
+
+void	put_paths(t_cmd **cmds)
+{
+	int	i;
+
+	i = -1;
+	while (cmds[++i])
+		cmds[i]->pathname = get_path(cmds[i]->argv[0]);
 }

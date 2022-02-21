@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 11:42:54 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 13:51:37 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,12 +120,9 @@ void	free_redirections(void *redirections);
 int		free_types(char **types);
 
 /* systax_error.c */
+
 int		r_syntax_errors(t_list **tokens);
 int		p_syntax_errors(t_list *tokens, int from);
-
-/* get_path.c */
-
-char	*get_path(const char *const cmd);
 
 /* strings.c */
 
@@ -148,7 +145,7 @@ void	exec_builtin(t_cmd *cmd);
 
 /* get_path.c */
 
-char	*get_path(const char *const cmd);
+void	put_paths(t_cmd **cmds);
 
 /* parse_string.c */
 
