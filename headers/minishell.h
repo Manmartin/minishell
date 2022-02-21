@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 20:43:07 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 11:42:54 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 typedef struct s_cmd {
 	t_list	*rdtns;
 	char	**argv;
+	char	*pathname;
 	int		argc;
 }				t_cmd;
 
@@ -56,7 +57,6 @@ typedef struct s_data {
 	char	**env;
 	int		sz_env;
 	char	*user;
-	char	*line;
 	int		n_cmd;
 }				t_data;
 
@@ -98,7 +98,7 @@ bool	quote_checker(t_list *tokens);
 
 /* expand_env.c */
 
-void	expand_env(t_list *tokens);
+void	expand_env(t_cmd **cmds);
 void	exit_error(char *msg);
 
 /* quote_remover.c */
@@ -149,5 +149,9 @@ void	exec_builtin(t_cmd *cmd);
 /* get_path.c */
 
 char	*get_path(const char *const cmd);
+
+/* parse_string.c */
+
+t_cmd	**parse_string(char *input);
 
 #endif

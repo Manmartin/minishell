@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/20 21:20:32 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 10:23:47 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	free_data(void)
 
 int	main(int argc, char *argv[], char *env[])
 {
-	t_list				*tokens;
-	t_cmd				**cmds;
+	char	*line;
+	t_cmd	**cmds;
 
 	(void)argc;
 	(void)argv;
@@ -42,20 +42,14 @@ int	main(int argc, char *argv[], char *env[])
 	init_data();
 	while (true)
 	{
-		g_data.line = readline(g_data.prompt);
-		if (g_data.line)
+		line = readline(g_data.prompt);
+		if (line)
 		{
-			tokens = lexer(g_data.line);
-			if (g_data.line[0] != '\0')
-				add_history(g_data.line);
-			free(g_data.line);
-			if (quote_checker(tokens))
-			{
-				cmds = parser(tokens);
-				expand_env(tokens);
-				if (cmds)
-					executor(cmds);
-			}
+			if (line[0] != '\0')
+				add_history(line);
+			cmds = parse_string(line);
+			if (cmds)
+				executor(cmds);
 		}
 		else
 		{
