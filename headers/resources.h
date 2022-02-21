@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 14:37:36 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 22:20:31 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,8 @@
 # define HERE_DOCS "/tmp/.tmpheredocsminishell"
 
 /*	Prompt */
-/*	Prompt variables
- *		-u = user
- *		-p = current directory
- *		
- *		-r = red
- *		-g = green
- *		-b = blue
- *		-e = end color
- *		-- = '-'
-*/
 
-# define PROMPT "-u:-p$ " 
+# define PROMPT "[minishell]> " 
 
 # define N_BUILTINS 7 
 

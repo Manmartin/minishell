@@ -6,7 +6,6 @@ INC = -I ./headers -I libft/
 LBLNK = -l readline
 
 SRC_F = main.c \
-		prompt.c \
 		env.c \
 		expand_env.c \
 		signals.c \

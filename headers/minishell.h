@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 13:51:37 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/21 22:22:42 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,8 @@ typedef struct s_rdtns {
 }				t_rdtns;
 
 typedef struct s_data {
-	char	*pwd;
-	char	*prompt;
 	char	**env;
 	int		sz_env;
-	char	*user;
 	int		n_cmd;
 }				t_data;
 
@@ -83,10 +80,6 @@ void	free_data(void);
 void	init_env(char **env);
 char	*get_env(const char *const str);
 void	free_env(void);
-
-/* prompt.c*/
-
-char	*get_prompt(void);
 
 /* lexer.c */
 
