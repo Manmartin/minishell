@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acrucesp <acrucesp@student.42madrid.c      +#+  +:+       +#+        */
+/*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 20:03:14 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/01/12 13:59:20 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/22 11:52:01 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char			*ft_itoa_base(long long unsigned int n, int base,
 char			*ft_strchrs(const char *str, char *set);
 int				ft_isforshell(char c);
 bool			ft_isenv(const char c);
+bool			ft_isexp(const char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 22:22:42 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/22 15:40:57 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,13 @@ void	make_dup(int fd[2], int used, int dupped);
 
 void	redirects(t_list *rdrc);
 
-/* builtins.c */
+/* builtinsc */
 
 bool	is_builtin(const char *const cmd);
 void	exec_builtin(t_cmd *cmd);
+int		export(t_cmd *cmd);
+void	set_env(char *name, char *value);
+int		env(void);
 
 /* get_path.c */
 

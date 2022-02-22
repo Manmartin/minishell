@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isenv.c                                         :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 19:02:44 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/22 11:46:30 by manuel           ###   ########.fr       */
+/*   Created: 2022/02/22 15:37:22 by manuel            #+#    #+#             */
+/*   Updated: 2022/02/22 15:42:34 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include <minishell.h>
 
-bool	ft_isenv(const char c)
+int	env(void)
 {
-	if (ft_isalnum(c) || c == '?' || c == '_')
-		return (true);
-	return (false);
-}
+	int	i;
 
-bool	ft_isexp(const char c)
-{
-	if (ft_isalnum(c) || c == '_')
-		return (true);
-	return (false);
+	i = -1;
+	while (g_data.env[++i] != NULL)
+		ft_putendl_fd(g_data.env[i], STDOUT_FILENO);
+	return (0);
 }

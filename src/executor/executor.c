@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 14:33:55 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/22 11:27:22 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,19 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 	{
 		ft_putstr_fd(cmd[0]->argv[0], STDERR_FILENO);
 		ft_putendl_fd(": command not found", STDERR_FILENO);
+		exit(0);
 	}
-	exit(0);
 }
 
 static void	wait_childs(void)
 {
-	int	i;
-	int	status;
+	int		status;
+	char	*s_status;
 
-	i = 0;
-	while (i++ < g_data.n_cmd)
+	while (g_data.n_cmd--)
 		wait(&status);
+	s_status = ft_itoa(WEXITSTATUS(status));
+	set_env(ft_strdup("?"), s_status);
 	init_data();
 }
 
