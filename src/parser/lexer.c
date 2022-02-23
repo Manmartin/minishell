@@ -70,13 +70,6 @@ static const char	*make_arg(const char *line, t_flags *flags)
 	return (line);
 }
 
-static t_list	*clean_args(t_list **args)
-{
-	ft_lstclear(args, free);
-	free_data();
-	perror("lexer");
-	exit(0);
-}
 
 t_list	*lexer(const char *line)
 {

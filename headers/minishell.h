@@ -111,6 +111,7 @@ t_cmd	**parser(t_list *tokens);
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n);
 void	free_redirections(void *redirections);
 int		free_types(char **types);
+t_list	*clean_args(t_list **args);
 
 /* systax_error.c */
 

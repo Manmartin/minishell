@@ -49,3 +49,11 @@ int	free_types(char **types)
 	types = NULL;
 	return (1);
 }
+
+t_list	*clean_args(t_list **args)
+{
+	ft_lstclear(args, free);
+	free_data();
+	perror("lexer");
+	exit(0);
+}
