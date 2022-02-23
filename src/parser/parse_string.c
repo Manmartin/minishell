@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 09:38:51 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/22 16:43:41 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:00:05 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_cmd	**parse_string(char *input)
 		{
 			expand_env(cmds);
 			put_paths(cmds);
+			g_data.pids = ft_calloc(g_data.n_cmd, sizeof(int));
 		}
 		return (cmds);
 	}

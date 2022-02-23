@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/22 11:27:22 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/23 20:13:09 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,11 @@ static void	wait_childs(void)
 	int		status;
 	char	*s_status;
 
-	while (g_data.n_cmd--)
-		wait(&status);
+	for (int i = 0; i < g_data.n_cmd; i++)
+	{
+		waitpid(g_data.pids[i], &status, 0);
+	}
+	free(g_data.pids);
 	s_status = ft_itoa(WEXITSTATUS(status));
 	set_env(ft_strdup("?"), s_status);
 	init_data();
@@ -59,6 +62,16 @@ static void	wait_childs(void)
 **	This function should not exist
 **	Norminnete fault
 */
+
+void add_pid(int pid)
+{
+	int	i;
+
+	i = 0;
+	while (g_data.pids[i] != 0)
+		i++;
+	g_data.pids[i] = pid;
+}
 
 static void	im_sorry(t_cmd **cmd, int fd1[2][2])
 {
@@ -78,6 +91,7 @@ void	executor(t_cmd **cmd)
 		exec_command(cmd, fd1[0]);
 	else if (pid == -1)
 		exit_error("fork");
+	add_pid(pid);
 	while (*(++cmd) != NULL)
 	{
 		close(fd1[0][WRITE_FD]);
@@ -90,6 +104,7 @@ void	executor(t_cmd **cmd)
 			exit(-1);
 		fd1[0][0] = fd1[1][0];
 		fd1[0][1] = fd1[1][1];
+		add_pid(pid);
 	}
 	wait_childs();
 }

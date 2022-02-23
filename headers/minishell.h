@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/22 15:40:57 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/23 19:52:46 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data {
 	char	**env;
 	int		sz_env;
 	int		n_cmd;
+	int		*pids;
 }				t_data;
 
 /*
