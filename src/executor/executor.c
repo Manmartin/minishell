@@ -6,22 +6,11 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/23 20:13:09 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/23 23:36:12 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-void	make_dup(int fd[2], int used, int dupped)
-{
-	close(fd[!used]);
-	dup2(fd[used], dupped);
-	close(fd[used]);
-}
-
-/* Norminette make me do this 
-	pathname will be not needed
-*/
 
 static void	exec_command(t_cmd **cmd, int fd[2])
 {
@@ -43,14 +32,17 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 	}
 }
 
-static void	wait_childs(void)
+static void	wait_childs(t_cmd **cmds)
 {
 	int		status;
 	char	*s_status;
+	int		i;
 
-	for (int i = 0; i < g_data.n_cmd; i++)
+	i = 0;
+	while (i < g_data.n_cmd)
 	{
-		waitpid(g_data.pids[i], &status, 0);
+		waitpid(g_data.pids[i++], &status, 0);
+		cmds--;
 	}
 	free(g_data.pids);
 	s_status = ft_itoa(WEXITSTATUS(status));
@@ -58,53 +50,43 @@ static void	wait_childs(void)
 	init_data();
 }
 
-/* 
-**	This function should not exist
-**	Norminnete fault
-*/
-
-void add_pid(int pid)
+static void	create_pipes(int (*fd)[2][2], t_cmd **cmd)
 {
-	int	i;
+	int	pid;
 
-	i = 0;
-	while (g_data.pids[i] != 0)
-		i++;
-	g_data.pids[i] = pid;
-}
-
-static void	im_sorry(t_cmd **cmd, int fd1[2][2])
-{
-	make_dup(fd1[0], READ_FD, STDIN_FILENO);
-	exec_command(cmd, fd1[1]);
+	close((*fd)[0][WRITE_FD]);
+	if (cmd[1] != NULL)
+		pipe((*fd)[1]);
+	pid = fork();
+	if (pid == 0)
+	{
+		make_dup((*fd)[0], READ_FD, STDIN_FILENO);
+		exec_command(cmd, (*fd)[1]);
+	}
+	else if (pid == -1)
+	{
+		make_dup((*fd)[0], READ_FD, STDIN_FILENO);
+		exec_command(cmd, (*fd)[1]);
+	}
+	(*fd)[0][0] = (*fd)[1][0];
+	(*fd)[0][1] = (*fd)[1][1];
+	add_pid(pid);
 }
 
 void	executor(t_cmd **cmd)
 {
 	pid_t	pid;
-	int		fd1[2][2];
+	int		fd[2][2];
 
 	if (cmd[1] != NULL)
-		pipe(fd1[0]);
+		pipe(fd[0]);
 	pid = fork();
 	if (pid == 0)
-		exec_command(cmd, fd1[0]);
+		exec_command(cmd, fd[0]);
 	else if (pid == -1)
 		exit_error("fork");
 	add_pid(pid);
 	while (*(++cmd) != NULL)
-	{
-		close(fd1[0][WRITE_FD]);
-		if (cmd[1] != NULL)
-			pipe(fd1[1]);
-		pid = fork();
-		if (pid == 0)
-			im_sorry(cmd, fd1);
-		else if (pid == -1)
-			exit(-1);
-		fd1[0][0] = fd1[1][0];
-		fd1[0][1] = fd1[1][1];
-		add_pid(pid);
-	}
-	wait_childs();
+		create_pipes(&fd, cmd);
+	wait_childs(cmd);
 }
