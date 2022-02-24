@@ -105,6 +105,12 @@ void	signals(void);
 /* parser.c */
 
 t_cmd	**parser(t_list *tokens);
+t_cmd	**alloc_cmds(int n_pipes);
+void	alloc_cmd(t_cmd ***cmds, int i, int j, t_list *tokens);
+void	load_cmds(t_list **tokens, t_cmd ***cmds, int (*i)[2], int n_pipes);
+int		count_nodes(t_list *tokens, int positions);
+int		load_cmd(t_list **tokens, t_cmd *cmds, int *i);
+
 
 /* free_cmds.c */
 

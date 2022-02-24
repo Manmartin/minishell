@@ -61,7 +61,7 @@ int	p_syntax_errors(t_list *tokens, int from)
 			ft_strlen((char *)tmp->content)))
 	{
 		write(STDERR_FILENO, "syntax error near unexpected token `", 36);
-		write(STDERR_FILENO, "|\'\n", 2);
+		write(STDERR_FILENO, "|\'\n", 3);
 		return (0);
 	}
 	return (1);
