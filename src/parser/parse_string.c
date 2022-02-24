@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 09:38:51 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/23 20:00:05 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/24 00:57:32 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ t_cmd	**parse_string(char *input)
 		}
 		return (cmds);
 	}
+	else
+		ft_putendl_fd("Error: bad quotes", STDERR_FILENO);
 	return (NULL);
 }
