@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 19:38:00 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:13:10 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	exit_error(char *msg)
 	exit(1);
 }
 
-static int	select_env(char **s, int i)
+int	select_env(char **s, int i)
 {
 	char	*env_var;
 	char	*aux;

@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 19:38:33 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/26 20:58:08 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,10 @@ void	put_paths(t_cmd **cmds)
 
 	i = -1;
 	while (cmds[++i])
-		cmds[i]->pathname = get_path(cmds[i]->argv[0]);
+	{
+		if (cmds[i]->argv[0] != NULL)
+			cmds[i]->pathname = get_path(cmds[i]->argv[0]);
+		else
+			cmds[i]->pathname = NULL;
+	}
 }

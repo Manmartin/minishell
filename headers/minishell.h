@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/23 23:37:24 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/26 21:15:59 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ bool	quote_checker(t_list *tokens);
 /* expand_env.c */
 
 void	expand_env(t_cmd **cmds);
+int		select_env(char **s, int i);
 void	exit_error(char *msg);
 
 /* quote_remover.c */
@@ -143,6 +144,10 @@ void	add_pid(int pid);
 /* redirects.c*/
 
 void	redirects(t_list *rdrc);
+
+/* aux_rdrc.c */
+
+void	expand_heredocs(char **str);
 
 /* builtinsc */
 

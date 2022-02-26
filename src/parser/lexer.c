@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2022/01/10 16:43:48 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:26:10 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static const char	*make_arg(const char *line, t_flags *flags)
 	}
 	return (line);
 }
-
 
 t_list	*lexer(const char *line)
 {

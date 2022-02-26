@@ -13,7 +13,7 @@ SRC_F = main.c \
 
 AUX_F = strings.c
 PARSER_F =  parse_string.c parser.c free_cmds.c syntax_errors.c quote_checker.c	quote_remover.c lexer.c aux_parser.c
-EXEC_F = executor.c redirects.c aux_exec.c
+EXEC_F = executor.c redirects.c aux_exec.c aux_rdrc.c
 BUILTINS_F = builtins.c export.c env.c
 
 SRC = $(addprefix src/, $(SRC_F))

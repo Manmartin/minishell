@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 09:38:51 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/24 00:57:32 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/26 20:28:53 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ t_cmd	**parse_string(char *input)
 
 	tokens = lexer(input);
 	free(input);
-	if (tokens && quote_checker(tokens))
+	if (!tokens)
+		return (NULL);
+	if (quote_checker(tokens))
 	{
 		cmds = parser(tokens);
 		if (cmds)
