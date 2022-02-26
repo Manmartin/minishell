@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_string.c                                     :+:      :+:    :+:   */
+/*   aux_exec.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 09:38:51 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/24 00:57:32 by manuel           ###   ########.fr       */
+/*   Created: 2022/02/23 23:34:12 by manuel            #+#    #+#             */
+/*   Updated: 2022/02/23 23:40:14 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-t_cmd	**parse_string(char *input)
+void	make_dup(int fd[2], int used, int dupped)
 {
-	t_list	*tokens;
-	t_cmd	**cmds;
+	close(fd[!used]);
+	dup2(fd[used], dupped);
+	close(fd[used]);
+}
 
-	tokens = lexer(input);
-	free(input);
-	if (tokens && quote_checker(tokens))
-	{
-		cmds = parser(tokens);
-		if (cmds)
-		{
-			expand_env(cmds);
-			put_paths(cmds);
-			g_data.pids = ft_calloc(g_data.n_cmd, sizeof(int));
-		}
-		return (cmds);
-	}
-	else
-		ft_putendl_fd("Error: bad quotes", STDERR_FILENO);
-	return (NULL);
+void	add_pid(int pid)
+{
+	int	i;
+
+	i = 0;
+	while (g_data.pids[i] != 0)
+		i++;
+	g_data.pids[i] = pid;
 }

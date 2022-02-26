@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/21 13:53:59 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/24 00:48:47 by manuel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ static char	*get_dir(const char *path, const char *cmd)
 		{
 			aux = create_path(path, cmd);
 			if (!access(aux, X_OK))
+			{
+				closedir(dir);
 				return (aux);
+			}
 			free(aux);
 		}
 		dirp = readdir(dir);
