@@ -7,8 +7,9 @@ t_cmd	**alloc_cmds(int n_pipes)
 
 	i = 0;
 	cmds = ft_calloc(sizeof(*cmds), n_pipes + 2);
-	while (i <= n_pipes + 1)
+	while (i <= n_pipes)
 		cmds[i++] = ft_calloc(sizeof(t_cmd), 1);
+	cmds[i] = NULL;
 	return (cmds);
 }
 
