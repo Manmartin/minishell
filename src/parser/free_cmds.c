@@ -14,6 +14,7 @@
 
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n)
 {
+	n = n + 2;
 	while (--n >= 0)
 	{
 		j = (cmds[n])->argc;

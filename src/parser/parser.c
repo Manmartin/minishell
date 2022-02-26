@@ -63,7 +63,11 @@ static	int	add_arg(t_list **args, void *str, t_list **tokens)
 	rdtns->type = ft_strdup((char *)str);
 	*tokens = (*tokens)->next;
 	if (!r_syntax_errors(tokens))
+	{
+		free(rdtns->type);
+		free(rdtns);
 		return (0);
+	}
 	rdtns->file = ft_strdup((char *)(*tokens)->content);
 	new = ft_lstnew(rdtns);
 	if (!new || !str)
@@ -118,8 +122,8 @@ t_cmd	**parser(t_list *tokens)
 		if (cmds)
 			tokens = tokens->next;
 	}
-	if (!cmds)
-		clean_args(&tmp_tokens);
+	//if (!cmds)
+	//	clean_args(&tmp_tokens);
 	g_data.n_cmd = i[1] + 1;
 	return (cmds);
 }
