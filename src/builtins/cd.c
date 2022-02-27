@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:22:56 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 19:29:21 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 20:27:53 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	cd(t_cmd *cmd)
 
 	size = ft_strlen(cmd->argv[1]) + ft_strlen(get_env("PWD")) + 2;
 	path = ft_calloc(sizeof(char), size);
-	chdir(cmd->argv[1]);	
+	chdir(cmd->argv[1]);
 	path = getcwd(path, size);
 	set_env(ft_strdup("PWD"), path);
 	return (0);
@@ -29,7 +29,7 @@ int	cd_exec(t_cmd *cmd)
 {
 	int		error;
 
-	error = chdir(cmd->argv[1]);	
+	error = chdir(cmd->argv[1]);
 	if (error == -1)
 	{
 		write(STDERR_FILENO, "cd: ", 4);

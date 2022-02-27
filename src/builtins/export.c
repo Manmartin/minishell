@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 09:40:13 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/27 18:08:19 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/27 20:28:42 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int	export(t_cmd *cmd)
 	int		i;
 
 	i = 0;
-	if (!cmd)
-		write(1, "not", 3);
 	tmp_env = ft_calloc(g_data.sz_env + 1, sizeof(char *));
- 	while (i < g_data.sz_env + 1)
+	while (i < g_data.sz_env + 1)
 	{
 		tmp_env[i] = g_data.env[i];
 		i++;
