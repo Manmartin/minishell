@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 11:15:17 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:26:46 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void	redirects(t_list *rdrc);
 /* aux_rdrc.c */
 
 void	expand_heredocs(char **str);
+char	*create_tmpfile(size_t len);
 
 /* builtinsc */
 

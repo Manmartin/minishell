@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:52:37 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 10:37:15 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 12:06:59 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ static void	rdrc_here(char *limit)
 {
 	int		fd;
 	char	*str;
+	char	*file;
 
-	fd = open(HERE_DOCS, O_CREAT | O_WRONLY | O_TRUNC,
+	file = create_tmpfile(10);
+	fd = open(file, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH);
 	if (fd == -1)
 		exit_error("open");
@@ -54,10 +56,11 @@ static void	rdrc_here(char *limit)
 		str = readline("> ");
 	}
 	if (!str)
-		exit_shell_error("Error: EOF in heredocs", -1);
+		exit_shell_error("Warning: EOF in heredocs", -1);
 	free(str);
 	close(fd);
-	rdrc_in(HERE_DOCS);
+	rdrc_in(file);
+	free(file);
 }
 
 static void	rdrc_out(char *pathname)
