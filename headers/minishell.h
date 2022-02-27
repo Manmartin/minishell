@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 21:15:59 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:45:07 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ bool	quote_checker(t_list *tokens);
 
 void	expand_env(t_cmd **cmds);
 int		select_env(char **s, int i);
-void	exit_error(char *msg);
 
 /* quote_remover.c */
 
@@ -164,5 +163,10 @@ void	put_paths(t_cmd **cmds);
 /* parse_string.c */
 
 t_cmd	**parse_string(char *input);
+
+/* shell_exit.c */
+
+void	exit_error(char *msg);
+void	exit_shell_error(char *msg, int code);
 
 #endif

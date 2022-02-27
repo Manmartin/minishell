@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:52:37 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 21:23:00 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 10:37:15 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	rdrc_in(char *pathname)
 	fd = open(pathname, O_RDONLY,
 			S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH);
 	if (fd == -1)
-		exit_error("perror");
+		exit_error("open");
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 }
@@ -46,17 +46,15 @@ static void	rdrc_here(char *limit)
 	if (fd == -1)
 		exit_error("open");
 	str = readline("> ");
-	while (ft_strncmp(str, limit, ft_strlen(limit) + 1) && str)
+	while (str && ft_strncmp(str, limit, ft_strlen(limit) + 1))
 	{
 		expand_heredocs(&str);
 		ft_putendl_fd(str, fd);
 		free(str);
 		str = readline("> ");
-		if (!str)
-			exit_error("bash");
 	}
 	if (!str)
-		exit_error("bash");
+		exit_shell_error("Error: EOF in heredocs", -1);
 	free(str);
 	close(fd);
 	rdrc_in(HERE_DOCS);
@@ -69,10 +67,7 @@ static void	rdrc_out(char *pathname)
 	fd = open(pathname, O_CREAT | O_WRONLY | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH);
 	if (fd == -1)
-	{
-		perror("open");
-		exit(-1);
-	}
+		exit_error("open");
 	dup2(fd, STDOUT_FILENO);
 	close(fd);
 }

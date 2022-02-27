@@ -6,17 +6,11 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 21:13:10 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/26 21:34:52 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
-
-void	exit_error(char *msg)
-{
-	perror(msg);
-	exit(1);
-}
 
 int	select_env(char **s, int i)
 {
