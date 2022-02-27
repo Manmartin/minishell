@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 18:48:14 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 19:27:37 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	wait_childs(t_cmd **cmds)
 		waitpid(g_data.pids[i++], &status, 0);
 		cmds--;
 	}	
+	env_builtins(cmds);
 	free_all_cmds(cmds);
 	free(g_data.pids);
 	s_status = ft_itoa(WEXITSTATUS(status));

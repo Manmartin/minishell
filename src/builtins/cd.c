@@ -6,13 +6,13 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:22:56 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 18:14:39 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/27 19:29:21 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-static int	cd(t_cmd *cmd)
+int	cd(t_cmd *cmd)
 {
 	char	*path;
 	int		size;
@@ -36,14 +36,5 @@ int	cd_exec(t_cmd *cmd)
 		write(STDERR_FILENO, cmd->argv[1], ft_strlen(cmd->argv[1]));
 		write(STDERR_FILENO, ": No such file or directory\n", 28);
 	}
-	return (0);
-}
-
-int	should_move(t_cmd **cmds)
-{
-	if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "cd", 3))
-		cd(cmds[0]);
-	if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "export", 7))
-		export(cmds[0]);
 	return (0);
 }
