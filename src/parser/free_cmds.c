@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 22:18:52 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/20 20:30:32 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 11:14:38 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,27 @@ t_cmd	**free_cmds(t_cmd **cmds, int j, int n)
 	free(cmds);
 	g_data.n_cmd = 0;
 	return (NULL);
+}
+
+void	free_all_cmds(t_cmd **cmds)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (cmds[i])
+	{
+		j = 0;
+		ft_lstclear(&cmds[i]->rdtns, free_redirections);
+		while (cmds[i]->argv[j])
+			free(cmds[i]->argv[j++]);
+		if (cmds[i]->pathname)
+			free(cmds[i]->pathname);
+		free(cmds[i]->argv);
+		free(cmds[i++]);
+	}
+	free(cmds);
+	g_data.n_cmd = 0;
 }
 
 void	free_redirections(void *redirections)

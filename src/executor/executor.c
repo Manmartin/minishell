@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/23 23:36:12 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 11:26:22 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,12 @@ static void	wait_childs(t_cmd **cmds)
 	{
 		waitpid(g_data.pids[i++], &status, 0);
 		cmds--;
-	}
+	}	
+	free_all_cmds(cmds);
 	free(g_data.pids);
 	s_status = ft_itoa(WEXITSTATUS(status));
+	if (!s_status)
+		exit_error("malloc");
 	set_env(ft_strdup("?"), s_status);
 	init_data();
 }

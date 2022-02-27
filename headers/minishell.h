@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 21:45:07 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 11:15:17 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		load_cmd(t_list **tokens, t_cmd *cmds, int *i);
 /* free_cmds.c */
 
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n);
+void	free_all_cmds(t_cmd **cmds);
 void	free_redirections(void *redirections);
 int		free_types(char **types);
 t_list	*clean_args(t_list **args);
