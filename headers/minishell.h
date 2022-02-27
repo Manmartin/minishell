@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 13:48:37 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 18:47:38 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,10 @@ void	exec_builtin(t_cmd *cmd);
 int		export(t_cmd *cmd);
 void	set_env(char *name, char *value);
 int		env(void);
+int		echo(t_cmd *cmd);
+int		pwd(void);
+int		should_move(t_cmd **cmd);
+int		cd_exec(t_cmd *cmd);
 
 /* get_path.c */
 
