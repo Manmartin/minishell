@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 09:40:13 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/22 16:39:33 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 18:08:19 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,21 @@ void	set_env(char *name, char *value)
 
 int	export(t_cmd *cmd)
 {
-	(void)cmd;
+	char	**tmp_env;
+	int		i;
+
+	i = 0;
+	if (!cmd)
+		write(1, "not", 3);
+	tmp_env = ft_calloc(g_data.sz_env + 1, sizeof(char *));
+ 	while (i < g_data.sz_env + 1)
+	{
+		tmp_env[i] = g_data.env[i];
+		i++;
+	}	
+	tmp_env[i] = cmd->argv[1];
+	free(g_data.env);
+	g_data.env = tmp_env;
+	g_data.sz_env = i;
 	return (-1);
 }

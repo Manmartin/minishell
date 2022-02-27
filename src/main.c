@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/23 20:01:30 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 18:36:57 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	main(int argc, char *argv[], char *env[])
 				add_history(line);
 			cmds = parse_string(line);
 			if (cmds)
+			{
+				should_move(cmds);
 				executor(cmds);
+			}
 		}
 		else
 		{

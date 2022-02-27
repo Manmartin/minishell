@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/23 23:36:12 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 18:01:58 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	executor(t_cmd **cmd)
 	pid_t	pid;
 	int		fd[2][2];
 
+	//if (cmd[0]->argc = 1
 	if (cmd[1] != NULL)
 		pipe(fd[0]);
 	pid = fork();

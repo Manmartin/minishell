@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:27:56 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/22 15:41:15 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 15:30:14 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,11 @@ void	exec_builtin(t_cmd *cmd)
 
 	value = 0;
 	if (!ft_strncmp(cmd->argv[0], "echo", 5))
-	{
-	}
-	else if (!ft_strncmp(cmd->argv[0], "cd", 3))
-	{
-	}
+		value = echo(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "pwd", 4))
-	{
-	}
+		value = pwd();
+	else if (!ft_strncmp(cmd->argv[0], "cd", 4))
+		value = cd_exec(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "export", 7))
 		value = export(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "unset", 6))

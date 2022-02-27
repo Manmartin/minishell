@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 22:18:52 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/20 20:30:32 by manuel           ###   ########.fr       */
+/*   Updated: 2022/02/27 02:30:34 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n)
 {
-	n = n + 2;
-	while (--n >= 0)
+	while (--n >= 0 && cmds)
 	{
 		j = (cmds[n])->argc;
 		ft_lstclear(&(cmds[n])->rdtns, &free_redirections);
