@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 13:26:46 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:48:37 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	load_cmds(t_list **tokens, t_cmd ***cmds, int (*i)[2], int n_pipes);
 int		count_nodes(t_list *tokens, int positions);
 int		load_cmd(t_list **tokens, t_cmd *cmds, int *i);
 
-
 /* free_cmds.c */
 
 t_cmd	**free_cmds(t_cmd **cmds, int j, int n);
@@ -136,7 +135,7 @@ char	*char_append(char *str1, const char c);
 void	executor(t_cmd	**cmd);
 void	make_dup(int fd[2], int used, int dupped);
 
-/* aux_exec.c */ 
+/* aux_exec.c */
 
 void	make_dup(int fd[2], int used, int dupped);
 void	add_pid(int pid);

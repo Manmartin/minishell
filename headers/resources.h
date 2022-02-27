@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 15:12:07 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 12:58:08 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/27 13:49:15 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@
 
 # define READ_FD	0
 # define WRITE_FD	1
-
-/* Free tokens flags */
-
-# define T_EXIT		0
-# define T_NEXIT	1
 
 /*	Prompt */
 
