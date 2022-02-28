@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 20:07:21 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:07:18 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	quote_remover(char **str);
 /* signals.c */
 
 void	signals(void);
+void	builtin_signals(int sig);
 
 /* parser.c */
 

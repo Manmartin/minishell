@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:27:56 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 20:05:55 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:08:35 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	exec_builtin(t_cmd *cmd)
 	int	value;
 
 	value = 0;
+	signal(SIGINT, builtin_signals);
+	signal(SIGQUIT, builtin_signals);
 	if (!ft_strncmp(cmd->argv[0], "echo", 5))
 		value = echo(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "pwd", 4))
@@ -46,8 +48,5 @@ void	exec_builtin(t_cmd *cmd)
 		value = export(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "env", 4))
 		value = env();
-	else if (!ft_strncmp(cmd->argv[0], "exit", 5))
-	{
-	}
 	exit(value);
 }
