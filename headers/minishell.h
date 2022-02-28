@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 16:07:18 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 17:44:04 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	quote_remover(char **str);
 
 void	signals(void);
 void	builtin_signals(int sig);
+void	manage_signals(int sig);
+void	heredocs_signals(int sig);
 
 /* parser.c */
 
@@ -144,6 +146,10 @@ void	add_pid(int pid);
 /* redirects.c*/
 
 void	redirects(t_list *rdrc);
+
+/* heredocs.c */
+
+int		make_heredocs(t_cmd **cmds);
 
 /* aux_rdrc.c */
 

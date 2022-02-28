@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 16:59:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 16:04:49 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 18:46:27 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@ void	builtin_signals(int sig)
 		exit(130);
 	else if (sig == SIGQUIT)
 		exit(131);
+}
+
+void	heredocs_signals(int sig)
+{
+	if (sig == SIGINT)
+	{
+	}
+	else if (sig == SIGQUIT)
+		ft_putstr_fd("\b\b  \b\b", STDERR_FILENO);
 }
 
 void	manage_signals(int sig)

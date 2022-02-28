@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 19:27:37 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 17:27:44 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,19 @@ void	executor(t_cmd **cmd)
 	pid_t	pid;
 	int		fd[2][2];
 
-	if (cmd[1] != NULL)
-		pipe(fd[0]);
-	pid = fork();
-	if (pid == 0)
-		exec_command(cmd, fd[0]);
-	else if (pid == -1)
-		exit_error("fork");
-	add_pid(pid);
-	while (*(++cmd) != NULL)
-		create_pipes(&fd, cmd);
-	wait_childs(cmd);
+	if (make_heredocs(cmd))
+	{
+		signal(SIGINT, manage_signals);
+		if (cmd[1] != NULL)
+			pipe(fd[0]);
+		pid = fork();
+		if (pid == 0)
+			exec_command(cmd, fd[0]);
+		else if (pid == -1)
+			exit_error("fork");
+		add_pid(pid);
+		while (*(++cmd) != NULL)
+			create_pipes(&fd, cmd);
+		wait_childs(cmd);
+	}
 }
