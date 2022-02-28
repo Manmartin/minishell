@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 17:27:44 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:37:18 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 	}
 }
 
+static int	get_status(int status)
+{
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else if (WTERMSIG(status))
+	{
+		if (status == 2)
+			return (130);
+		if (status == 3)
+			return (131);
+	}
+	return (status);
+}
+
 static void	wait_childs(t_cmd **cmds)
 {
 	int		status;
@@ -43,11 +57,13 @@ static void	wait_childs(t_cmd **cmds)
 	{
 		waitpid(g_data.pids[i++], &status, 0);
 		cmds--;
-	}	
+	}
+	status = get_status(status);
 	env_builtins(cmds);
 	free_all_cmds(cmds);
 	free(g_data.pids);
-	s_status = ft_itoa(WEXITSTATUS(status));
+	g_data.pids = NULL;
+	s_status = ft_itoa(status);
 	if (!s_status)
 		exit_error("malloc");
 	set_env(ft_strdup("?"), s_status);
@@ -97,4 +113,6 @@ void	executor(t_cmd **cmd)
 			create_pipes(&fd, cmd);
 		wait_childs(cmd);
 	}
+	else
+		free_all_cmds(cmd);
 }

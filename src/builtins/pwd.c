@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 12:20:32 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 12:30:08 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:34:47 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 int	pwd(void)
 {
-	write(1, get_env("PWD"), ft_strlen(get_env("PWD")));
+	char	*aux;
+
+	aux = get_env("PWD");
+	write(1, aux, ft_strlen(aux));
 	write(1, "\n", 1);
+	free(aux);
 	return (0);
 }

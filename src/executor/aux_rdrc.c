@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:29:36 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 12:30:51 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 23:27:30 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ char	*create_tmpfile(size_t len)
 	file = append_string(ft_strdup("/tmp/"), file);
 	close(fd);
 	if (!access(file, F_OK))
+	{
+		free(file);
 		file = create_tmpfile(len);
+	}
 	return (file);
 }

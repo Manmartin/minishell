@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 19:43:17 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/02/28 22:10:12 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_rdtns {
 }				t_rdtns;
 
 typedef struct s_data {
+	int		fd;
+	int		fd_closed;
 	char	**env;
 	int		sz_env;
 	int		n_cmd;
