@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 19:19:22 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 20:05:16 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/02/27 21:21:01 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ int	env_builtins(t_cmd **cmds)
 		export(cmds[0]);
 	else if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "unset", 6))
 		unset(cmds[0]);
+	else if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "exit", 5))
+		exitchan(cmds);
 	return (0);
 }
