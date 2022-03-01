@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 19:34:24 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/27 19:34:29 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 12:05:38 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	load_cmds(t_list **tokens, t_cmd ***cmds, int (*i)[2], int n_pipes)
 	else
 	{
 		if (load_cmd(tokens, (*cmds)[(*i)[1]], &((*i)[0])))
-			*cmds = free_cmds(*cmds, (*i)[1], n_pipes);
+			*cmds = free_cmds(*cmds, (*i)[1], n_pipes + 1);
 		(*i)[0]++;
 	}
 }
