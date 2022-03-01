@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 15:24:29 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:39:49 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_cmd {
 	char	**argv;
 	char	*pathname;
 	int		argc;
+	char	*was_exp;
+	char	*rwas_exp;
 }				t_cmd;
 
 typedef struct s_rdtns {
@@ -94,7 +96,7 @@ bool	quote_checker(t_list *tokens);
 
 /* expand_env.c */
 
-void	expand_env(t_cmd **cmds);
+int		expand_env(t_cmd **cmds);
 int		select_env(char **s, int i);
 
 /* quote_remover.c */

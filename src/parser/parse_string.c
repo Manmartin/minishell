@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 09:38:51 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/26 20:28:53 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:44:13 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_cmd	**parse_string(char *input)
 		cmds = parser(tokens);
 		if (cmds)
 		{
-			expand_env(cmds);
+			if (!expand_env(cmds))
+				return (NULL);
 			put_paths(cmds);
 			g_data.pids = ft_calloc(g_data.n_cmd, sizeof(int));
 		}

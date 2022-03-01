@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 22:18:52 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 18:50:15 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:33:52 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	free_all_cmds(t_cmd **cmds)
 			free(cmds[i]->argv[j++]);
 		if (cmds[i]->pathname)
 			free(cmds[i]->pathname);
+		free(cmds[i]->was_exp);
+		free(cmds[i]->rwas_exp);
 		free(cmds[i]->argv);
 		free(cmds[i++]);
 	}

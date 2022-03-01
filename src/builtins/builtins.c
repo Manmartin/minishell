@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:27:56 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 14:43:14 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 20:55:33 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	exec_builtin(t_cmd *cmd)
 	value = 0;
 	signal(SIGINT, builtin_signals);
 	signal(SIGQUIT, builtin_signals);
+	if (!cmd->argv[0])
+		exit(0);
 	if (!ft_strncmp(cmd->argv[0], "echo", 5))
 		value = echo(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "pwd", 4))

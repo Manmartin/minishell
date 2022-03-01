@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 19:52:35 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/26 20:12:16 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/01 19:50:38 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	echo(t_cmd *cmd)
 
 	i = 0;
 	k = 0;
-	if (!ft_strncmp(cmd->argv[i + 1], "-n", 3))
+	if (cmd->argv[1] && !ft_strncmp(cmd->argv[1], "-n", 3))
 	{
 		i++;
 		k = 1;
