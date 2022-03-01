@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 09:40:13 by manuel            #+#    #+#             */
-/*   Updated: 2022/02/28 23:58:49 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:48:30 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,27 @@ void	set_env(char *name, char *value)
 	i = -1;
 	sz = ft_strlen(name);
 	while (g_data.env[++i])
-		if (ft_strncmp(g_data.env[i], name, sz) == 0)
+		if (ft_strncmp(g_data.env[i], name, sz) == 0
+			&& (g_data.env[i][sz] == '='
+			|| g_data.env[i][sz] == '\0'))
 			break ;
 	if (i == g_data.sz_env - 1)
 		move_env();
 	if (g_data.env[i] != NULL)
 		free(g_data.env[i]);
-	if (value[0] != 0)
+	if (value)
 		aux = append_string(name, ft_strdup("="));
 	else
+	{
+		value = ft_strdup("");
 		aux = name;
+	}
 	g_data.env[i] = append_string(aux, value);
 }
 
 int	parse_arg(t_cmd *cmd, int i)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	if (cmd->argv[i][j] == '_' || ft_isalpha(cmd->argv[i][0]))
@@ -61,7 +66,7 @@ int	parse_arg(t_cmd *cmd, int i)
 		{
 			if (!ft_isexp(cmd->argv[i][j]) && cmd->argv[i][j] != '=')
 				return (0);
-			j++;	
+			j++;
 		}	
 	}
 	else
@@ -72,12 +77,10 @@ int	parse_arg(t_cmd *cmd, int i)
 int	export(t_cmd *cmd)
 {
 	int		i;
-	int		j;
 	char	*name;
 	char	*value;
 
 	i = 0;
-	j = 0;
 	while (cmd->argv[++i])
 	{
 		if (parse_arg(cmd, i))
@@ -90,8 +93,27 @@ int	export(t_cmd *cmd)
 				set_env(name, value);
 			}
 			else
-				set_env(name, ft_strdup(""));
+				set_env(name, NULL);
 		}
 	}
-	return (-1);
+	return (0);
+}
+
+int	export_exec(t_cmd *cmd)
+{
+	int		i;
+
+	i = 0;
+	if (cmd->argv[1] == NULL)
+		show_export();
+	while (cmd->argv[++i])
+	{
+		if (!parse_arg(cmd, i))
+		{
+			ft_putstr_fd("export: `", STDERR_FILENO);
+			ft_putstr_fd(cmd->argv[i], STDERR_FILENO);
+			ft_putendl_fd("': not a valid identifier", STDERR_FILENO);
+		}
+	}
+	return (0);
 }

@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_builtins.c                                     :+:      :+:    :+:   */
+/*   show_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/27 19:19:22 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 14:42:23 by manmarti         ###   ########.fr       */
+/*   Created: 2022/03/01 15:22:28 by manmarti          #+#    #+#             */
+/*   Updated: 2022/03/01 15:52:10 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	env_builtins(t_cmd **cmds)
+void	show_export(void)
 {
-	if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "cd", 3))
-		cd(cmds[0]);
-	else if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "export", 7))
-		export(cmds[0]);
-	else if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "unset", 6))
-		unset(cmds[0]);
-	else if (g_data.n_cmd == 1 && !ft_strncmp(cmds[0]->argv[0], "exit", 5))
-		exitchan(cmds);
-	return (0);
+	char	*aux;
+	int		i;
+	int		j;
+
+	i = -1;
+	while (g_data.env[++i] != NULL)
+	{
+		j = i;
+		while (g_data.env[++j])
+		{
+			if (ft_strncmp(g_data.env[i], g_data.env[j],
+					ft_strlen(g_data.env[i] + 1)) > 0)
+			{
+				aux = g_data.env[i];
+				g_data.env[i] = g_data.env[j];
+				g_data.env[j] = aux;
+			}
+		}
+	}
+	i = 0;
+	while (g_data.env[i])
+		printf("%s\n", g_data.env[i++]);
 }

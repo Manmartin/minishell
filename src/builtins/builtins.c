@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:27:56 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 19:43:57 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 14:43:14 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	exec_builtin(t_cmd *cmd)
 	else if (!ft_strncmp(cmd->argv[0], "cd", 4))
 		value = cd_exec(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "export", 7))
-		value = export(cmd);
+		export_exec(cmd);
 	else if (!ft_strncmp(cmd->argv[0], "env", 4))
 		value = env();
 	exit(value);

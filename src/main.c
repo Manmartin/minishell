@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 10:38:48 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 12:27:30 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_data(void)
 
 void	free_data(void)
 {
+	close(g_data.fd);
 	rl_clear_history();
 	free_env();
 }

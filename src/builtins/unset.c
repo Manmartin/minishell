@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:20:42 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 20:26:14 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:44:19 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ void	unset(t_cmd *cmd)
 		sz = ft_strlen(name);
 		while (g_data.env[++i])
 			if (ft_strncmp(g_data.env[i], name, sz) == 0
-				&& g_data.env[i][sz] == '=')
+				&& (g_data.env[i][sz] == '='
+				|| g_data.env[i][sz] == '\0'))
 				break ;
 		if (g_data.env[i] != NULL)
 		{
