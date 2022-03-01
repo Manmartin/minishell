@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 22:10:12 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 10:48:47 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,7 @@ void	make_dup(int fd[2], int used, int dupped);
 
 void	make_dup(int fd[2], int used, int dupped);
 void	add_pid(int pid);
+void	free_exec(void);
 
 /* redirects.c*/
 

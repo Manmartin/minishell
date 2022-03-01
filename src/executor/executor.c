@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 23:37:18 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 10:47:28 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,10 @@ static void	wait_childs(t_cmd **cmds)
 	status = get_status(status);
 	env_builtins(cmds);
 	free_all_cmds(cmds);
-	free(g_data.pids);
-	g_data.pids = NULL;
 	s_status = ft_itoa(status);
 	if (!s_status)
 		exit_error("malloc");
 	set_env(ft_strdup("?"), s_status);
-	init_data();
 }
 
 static void	create_pipes(int (*fd)[2][2], t_cmd **cmd)
@@ -115,4 +112,5 @@ void	executor(t_cmd **cmd)
 	}
 	else
 		free_all_cmds(cmd);
+	free_exec();
 }

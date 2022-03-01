@@ -17,7 +17,7 @@ EXEC_F = executor.c redirects.c aux_exec.c aux_rdrc.c heredocs.c
 BUILTINS_F = builtins.c export.c env.c echo.c cd.c pwd.c env_builtins.c unset.c exit.c
 
 SRC = $(addprefix src/, $(SRC_F))
-SRC += $(addprefix src/aux/, $(AUX_F))
+SRC += $(addprefix src/utils/, $(AUX_F))
 SRC += $(addprefix src/parser/, $(PARSER_F))
 SRC += $(addprefix src/executor/, $(EXEC_F))
 SRC += $(addprefix src/builtins/, $(BUILTINS_F))

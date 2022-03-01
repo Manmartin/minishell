@@ -6,11 +6,18 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:20:47 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 23:20:57 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 00:25:15 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
+
+static int	exit_heredocs(char *file, int fd)
+{
+	close(fd);
+	free(file);
+	return (0);
+}
 
 int	heredocs(t_list	*rdrc, char *limit)
 {
@@ -31,9 +38,9 @@ int	heredocs(t_list	*rdrc, char *limit)
 		str = readline("> ");
 	}
 	if (!str && !g_data.fd_closed)
-		exit_shell_error("Warning: EOF in heredocs", -1);
+		ft_putendl_fd("Warning: EOF in heredocs", STDERR_FILENO);
 	else if (!str)
-		return (0);
+		return (exit_heredocs(file, fd));
 	free(str);
 	close(fd);
 	free(((t_rdtns *)rdrc->content)->file);

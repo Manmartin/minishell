@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:45:18 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 23:33:16 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/01 10:38:48 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ t_data	g_data;
 void	init_data(void)
 {
 	g_data.n_cmd = 0;
-	if (g_data.pids != NULL)
-		free(g_data.pids);
 	g_data.pids = NULL;
 	g_data.fd_closed = 0;
 	g_data.fd = dup(STDIN_FILENO);
