@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 11:04:30 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 12:51:03 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:06:26 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	relexer_args(t_cmd **cmds, int i)
 	}
 	retokenize(cmds, aux, i);
 	ft_lstclear(&aux, free);
-	ft_putendl_fd("Ambiguous redirection", STDERR_FILENO);
 }
 
 static void	rdrc_error(t_cmd *cmd)
@@ -60,6 +59,7 @@ static void	rdrc_error(t_cmd *cmd)
 	error_flag = ft_calloc(sizeof(t_rdtns), 1);
 	error_flag->type = ft_strdup("x");
 	cmd->rdtns = ft_lstnew(error_flag);
+	ft_putendl_fd("Ambiguous redirection", STDERR_FILENO);
 }
 
 static void	relexer_rdrc(t_cmd **cmds, t_list *rdrc, int i)

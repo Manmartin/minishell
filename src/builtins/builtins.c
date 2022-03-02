@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/12 18:27:56 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 20:55:33 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:08:48 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 bool	is_builtin(const char *const cmd)
 {
+	if (cmd == NULL)
+		return (false);
 	if (!ft_strncmp(cmd, "echo", 5))
 		return (true);
 	else if (!ft_strncmp(cmd, "cd", 3))
