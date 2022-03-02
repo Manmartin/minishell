@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 16:59:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/28 22:35:50 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:20:54 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	heredocs_signals(int sig)
 		close(STDIN_FILENO);
 		g_data.fd_closed = 1;
 	}
-	else if (sig == SIGQUIT)
-		ft_putstr_fd("\b\b  \b\b", STDERR_FILENO);
 }
 
 void	manage_signals(int sig)
@@ -43,8 +41,6 @@ void	manage_signals(int sig)
 	}
 	else if (sig == SIGINT)
 		write(STDERR_FILENO, "\n", 1);
-	else if (sig == SIGQUIT && !g_data.pids)
-		ft_putstr_fd("\b\b  \b\b", STDERR_FILENO);
 	else if (sig == SIGQUIT)
 		ft_putendl_fd("Quit (core dumped)", STDERR_FILENO);
 }
@@ -52,5 +48,5 @@ void	manage_signals(int sig)
 void	signals(void)
 {
 	signal(SIGINT, manage_signals);
-	signal(SIGQUIT, manage_signals);
+	signal(SIGQUIT, SIG_IGN);
 }

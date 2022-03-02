@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 19:31:41 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:04:32 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,5 @@ void	executor(t_cmd **cmd)
 	else
 		free_all_cmds(cmd);
 	free_exec();
+	signal(SIGQUIT, SIG_IGN);
 }
