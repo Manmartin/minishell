@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/12 18:45:57 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 13:36:44 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:39:06 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static	int	count_pipes(t_list *tokens)
 	n_cmds = 0;
 	while (tokens)
 	{
-		if (ft_strnstr((char *)tokens->content, "|",
-				ft_strlen((char *)tokens->content)))
+		if (!ft_strncmp((char *)tokens->content, "|",
+				ft_strlen((char *)tokens->content) + 1))
 			n_cmds++;
 		tokens = tokens->next;
 	}
@@ -45,8 +45,8 @@ int	count_nodes(t_list *tokens, int positions)
 	}
 	while (tokens)
 	{
-		if (ft_strnstr((char *)tokens->content, "|",
-				ft_strlen((char *)tokens->content)))
+		if (!ft_strncmp((char *)tokens->content, "|",
+				ft_strlen((char *)tokens->content) + 1))
 			return (n_nodes);
 		n_nodes++;
 		tokens = tokens->next;
@@ -87,8 +87,8 @@ int	load_cmd(t_list **tokens, t_cmd *cmds, int *i)
 	types = ft_split(TYPES, ',');
 	while (types[++y])
 	{
-		if (ft_strnstr(types[y], (char *)(*tokens)->content,
-			ft_strlen((char *)(*tokens)->content)))
+		if (!ft_strncmp(types[y], (char *)(*tokens)->content,
+			ft_strlen((char *)(*tokens)->content) + 1))
 		{
 			if (add_arg(&(cmds->rdtns), types[y], tokens))
 				(*i)--;
