@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/02/26 20:58:08 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:28:40 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void	put_paths(t_cmd **cmds)
 		if (cmds[i]->argv[0] != NULL)
 			cmds[i]->pathname = get_path(cmds[i]->argv[0]);
 		else
-			cmds[i]->pathname = NULL;
+			cmds[i]->pathname = ft_strdup("");
 	}
 }

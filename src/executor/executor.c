@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 18:49:58 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:31:41 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 		exec_builtin(cmd[0]);
 	else if (cmd[0]->pathname)
 	{
+		if (cmd[0]->pathname[0] == '\0')
+			exit(0);
 		execve(cmd[0]->pathname, cmd[0]->argv, g_data.env);
 		exit_error("execve");
 	}

@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 19:34:24 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 12:05:38 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 19:19:10 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	load_cmds(t_list **tokens, t_cmd ***cmds, int (*i)[2], int n_pipes)
 	if (ft_strnstr((char *)(*tokens)->content, "|",
 		ft_strlen((char *)(*tokens)->content)))
 	{
-		if ((*i)[0] == 0 && !p_syntax_errors((*tokens), 1))
+		if ((*i)[0] == 0 && !p_syntax_errors((*tokens), 0))
 			(*cmds) = free_cmds(*cmds, (*i)[1], n_pipes + 1);
 		else if (!p_syntax_errors((*tokens), 0))
 			(*cmds) = free_cmds(*cmds, (*i)[1], n_pipes + 1);
