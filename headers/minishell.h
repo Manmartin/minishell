@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 21:39:49 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 11:09:27 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,17 @@ bool	quote_checker(t_list *tokens);
 
 /* expand_env.c */
 
-int		expand_env(t_cmd **cmds);
+void	expand_env(t_cmd **cmds);
 int		select_env(char **s, int i);
+
+/* aux_expand.c */
+
+char	*make_expanded_str(char **str);
+void	make_expand(char **str, char *flag);
+
+/* relexer.c */
+
+void	relexer(t_cmd **cmds);
 
 /* quote_remover.c */
 

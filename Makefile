@@ -6,21 +6,21 @@ INC = -I ./headers -I libft/
 LBLNK = -l readline
 
 SRC_F = main.c \
-		env.c \
-		expand_env.c \
 		signals.c \
-		get_path.c \
+		get_path.c 
 
 AUX_F = strings.c shell_exit.c
-PARSER_F =  parse_string.c parser.c free_cmds.c syntax_errors.c quote_checker.c	quote_remover.c lexer.c aux_parser.c
+PARSER_F =  parse_string.c parser.c free_cmds.c syntax_errors.c quote_checker.c	lexer.c aux_parser.c
 EXEC_F = executor.c redirects.c aux_exec.c aux_rdrc.c heredocs.c
 BUILTINS_F = builtins.c export.c env.c echo.c cd.c pwd.c env_builtins.c unset.c exit.c show_export.c
+ENV_F = env.c expand_env.c aux_expand.c quote_remover.c relexer.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/utils/, $(AUX_F))
 SRC += $(addprefix src/parser/, $(PARSER_F))
 SRC += $(addprefix src/executor/, $(EXEC_F))
 SRC += $(addprefix src/builtins/, $(BUILTINS_F))
+SRC += $(addprefix src/env/, $(ENV_F))
 
 OBJ = $(SRC:.c=.o)
 
