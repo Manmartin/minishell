@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 20:22:56 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/28 21:51:01 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:56:09 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	cd(t_cmd *cmd)
 	char	*path;
 	int		size;
 
-	if (cmd->argc > 3 || cmd->argc == 2)
+	if (!cmd->argv[1] || cmd->argv[2])
 		return (0);
 	size = 4096;
 	path = ft_calloc(sizeof(char), size);
@@ -32,9 +32,9 @@ int	cd_exec(t_cmd *cmd)
 	int		error;
 	char	*path;
 
-	if (cmd->argc == 2)
+	if (!cmd->argv[1] || cmd->argv[1][0] == '\0')
 		return (0);
-	if (cmd->argc > 3)
+	if (cmd->argv[2])
 	{
 		ft_putendl_fd("cd: too many arguments", STDERR_FILENO);
 		return (0);
