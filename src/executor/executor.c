@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 10:47:28 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:49:58 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	create_pipes(int (*fd)[2][2], t_cmd **cmd)
 		make_dup((*fd)[0], READ_FD, STDIN_FILENO);
 		exec_command(cmd, (*fd)[1]);
 	}
+	close((*fd)[0][READ_FD]);
 	(*fd)[0][0] = (*fd)[1][0];
 	(*fd)[0][1] = (*fd)[1][1];
 	add_pid(pid);
