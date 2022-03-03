@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:21:10 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 19:28:40 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/03 00:26:15 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ static char	*get_path(const char *const cmd)
 	int		i;
 
 	i = 0;
-	if (cmd[0] == '/' || !ft_strncmp(cmd, "./", 2)
-		|| !ft_strncmp(cmd, "../", 3))
+	if (ft_strchr(cmd, '/'))
 		return (ft_strdup(cmd));
 	path = get_env("PATH");
 	paths = ft_split(path, ':');
