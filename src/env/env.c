@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2021/12/02 11:48:12 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/03 22:26:09 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,25 @@ char	*get_env(const char *const str)
 	return (ft_strdup(""));
 }
 
+static void	set_minienv(void)
+{
+	char	**basics;
+	char	*path;
+	int		size;
+
+	basics = ft_calloc(8, sizeof(char *));
+	g_data.env = basics;
+	if (basics == NULL)
+		exit_error("calloc");
+	g_data.sz_env = 8; 
+	basics[0] = ft_strdup("PATH=/bin");
+	basics[1] = ft_strdup("SHLVL=1");
+	size = 4096;
+	path = ft_calloc(sizeof(char), size);
+	path = getcwd(path, size);
+	set_env(ft_strdup("PWD"), path);
+}
+
 void	init_env(char **env)
 {
 	char	**tmp_env;
@@ -53,6 +72,8 @@ void	init_env(char **env)
 	while (env[g_data.sz_env])
 		g_data.sz_env++;
 	g_data.sz_env *= 2;
+	if (g_data.sz_env == 0)
+		return (set_minienv());
 	g_data.env = ft_calloc(g_data.sz_env, sizeof(char *));
 	if (!g_data.env)
 	{
