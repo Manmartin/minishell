@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 16:20:47 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/01 00:25:15 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/02 21:22:37 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	exit_heredocs(char *file, int fd)
 	return (0);
 }
 
-int	heredocs(t_list	*rdrc, char *limit)
+static int	heredocs(t_list	*rdrc, char *limit)
 {
 	int		fd;
 	char	*str;
@@ -57,7 +57,7 @@ int	make_heredocs(t_cmd **cmds)
 	i = -1;
 	exit_value = 1;
 	signal(SIGINT, heredocs_signals);
-	signal(SIGQUIT, heredocs_signals);
+	signal(SIGQUIT, SIG_IGN);
 	while (cmds[++i] != NULL)
 	{
 		aux = cmds[i]->rdtns;

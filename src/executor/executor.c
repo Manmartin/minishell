@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/04 09:05:27 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:17:45 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	executor(t_cmd **cmd)
 
 	if (make_heredocs(cmd))
 	{
-		signal(SIGINT, manage_signals);
 		if (cmd[1] != NULL)
 			pipe(fd[0]);
 		pid = fork();
@@ -116,4 +115,5 @@ void	executor(t_cmd **cmd)
 	else
 		free_all_cmds(cmd);
 	free_exec();
+	signal(SIGQUIT, SIG_IGN);
 }
