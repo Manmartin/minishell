@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 10:24:12 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 11:00:56 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 11:29:26 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	make_expand(char **str, char *flag)
 	if (ft_strncmp(aux, *str, ft_strlen(aux) + 1))
 		*flag = 1;
 	free(aux);
-	quote_remover(str);
 }
