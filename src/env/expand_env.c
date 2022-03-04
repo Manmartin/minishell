@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 18:32:54 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/04 12:03:09 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 12:43:42 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	remove_all_quotes(t_cmd **cmds)
 {
 	int			i;
 	int			j;
-	t_list	*rdrc;
-	
+	t_list		*rdrc;
+
 	i = -1;
 	while (cmds[++i])
 	{

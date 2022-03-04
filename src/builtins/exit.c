@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:36:07 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/03/04 10:15:24 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:23:39 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ static int	is_str_valid(char *str)
 	return (1);
 }
 
-static void	msg_error(t_cmd **cmd, int i)
+static int	msg_error(t_cmd **cmd, int i)
 {
 	ft_putstr_fd("exit: ", STDERR_FILENO);
 	ft_putstr_fd(cmd[0]->argv[i], STDERR_FILENO);
 	ft_putendl_fd(": numeric argument required", STDERR_FILENO);
+	return (2);
 }
 
 void	exitchan(t_cmd **cmd)
@@ -47,13 +48,14 @@ void	exitchan(t_cmd **cmd)
 	{
 		if (!is_str_valid(cmd[0]->argv[i]))
 		{
-			msg_error(cmd, i);
+			value = msg_error(cmd, i);
 			break ;
 		}
 		else if (i > 1)
 		{
 			ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
-			break ;
+			value = 1;
+			return ;
 		}
 		else
 			value = ft_atoi(cmd[0]->argv[i]);
@@ -74,12 +76,15 @@ void	exit_exec(t_cmd **cmd)
 	{
 		if (!is_str_valid(cmd[0]->argv[i]))
 		{
-			msg_error(cmd, i);
+			if (g_data.n_cmd > 1)
+				value = msg_error(cmd, i);
 			break ;
 		}
 		else if (i > 1)
 		{
-			ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
+			if (g_data.n_cmd > 1)
+				ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
+			value = 1;
 			break ;
 		}
 		else
