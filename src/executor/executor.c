@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 19:31:41 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:05:27 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	exec_command(t_cmd **cmd, int fd[2])
 		make_dup(fd, WRITE_FD, STDOUT_FILENO);
 	redirects(cmd[0]->rdtns);
 	if (is_builtin(cmd[0]->argv[0]))
-		exec_builtin(cmd[0]);
+		exec_builtin(cmd);
 	else if (cmd[0]->pathname)
 	{
 		if (cmd[0]->pathname[0] == '\0')

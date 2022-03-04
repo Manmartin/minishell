@@ -6,7 +6,7 @@
 /*   By: acrucesp <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 20:36:07 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/02/27 21:30:18 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:15:24 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,30 @@ void	exitchan(t_cmd **cmd)
 	}
 	free_all_cmds(cmd);
 	free_data();
+	exit(value);
+}
+
+void	exit_exec(t_cmd **cmd)
+{
+	int	value;
+	int	i;
+
+	value = 0;
+	i = 0;
+	while (cmd[0]->argv[++i])
+	{
+		if (!is_str_valid(cmd[0]->argv[i]))
+		{
+			msg_error(cmd, i);
+			break ;
+		}
+		else if (i > 1)
+		{
+			ft_putendl_fd("exit: too many arguments", STDERR_FILENO);
+			break ;
+		}
+		else
+			value = ft_atoi(cmd[0]->argv[i]);
+	}
 	exit(value);
 }

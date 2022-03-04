@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 11:09:27 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 09:24:42 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ char	*create_tmpfile(size_t len);
 /* builtinsc */
 
 bool	is_builtin(const char *const cmd);
-void	exec_builtin(t_cmd *cmd);
+void	exec_builtin(t_cmd **cmd);
 int		export(t_cmd *cmd);
 void	set_env(char *name, char *value);
 int		env(void);
@@ -185,6 +185,7 @@ int		env_builtins(t_cmd **cmds);
 int		cd(t_cmd *cmd);
 void	unset(t_cmd *cmd);
 void	exitchan(t_cmd **cmd);
+void	exit_exec(t_cmd **cmd);
 int		export_exec(t_cmd *cmd);
 void	show_export(void);
 
