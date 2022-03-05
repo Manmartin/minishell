@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/05 21:48:18 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:06:04 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	free_data(void);
 
 void	init_env(char **env);
 char	*get_env(const char *const str);
-void	free_env(void);
+int		free_env(void);
 
 /* lexer.c */
 

@@ -6,13 +6,13 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/03/03 22:26:09 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:06:32 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	free_env(void)
+int	free_env(void)
 {
 	int	i;
 
@@ -20,6 +20,7 @@ void	free_env(void)
 	while (g_data.env[++i])
 		free(g_data.env[i]);
 	free(g_data.env);
+	return (1);
 }
 
 /*	get_env return value of a env variable "str"
@@ -55,7 +56,7 @@ static void	set_minienv(void)
 	g_data.env = basics;
 	if (basics == NULL)
 		exit_error("calloc");
-	g_data.sz_env = 8; 
+	g_data.sz_env = 8;
 	basics[0] = ft_strdup("PATH=/bin");
 	basics[1] = ft_strdup("SHLVL=1");
 	size = 4096;
@@ -84,9 +85,8 @@ void	init_env(char **env)
 	while (*env)
 	{
 		*tmp_env = ft_strdup(*env++);
-		if (!*tmp_env)
+		if (!*tmp_env && free_env())
 		{
-			free_env();
 			perror("init_env");
 			exit(0);
 		}
