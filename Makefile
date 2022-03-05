@@ -2,8 +2,8 @@ NAME = minishell
 
 CC = clang
 CFLAGS = -Wall -Wextra -Werror -O2
-INC = -I ./headers -I libft/
-LBLNK = -l readline
+INC = -I ./headers -I libft/ -I /Users/acrucesp/.brew/Cellar/readline/8.1.2/include 
+LBLNK = -L /Users/acrucesp/.brew/Cellar/readline/8.1.2/lib -lreadline
 
 SRC_F = main.c \
 		signals.c \
@@ -12,7 +12,7 @@ SRC_F = main.c \
 AUX_F = strings.c shell_exit.c
 PARSER_F =  parse_string.c parser.c free_cmds.c syntax_errors.c quote_checker.c	lexer.c aux_parser.c
 EXEC_F = executor.c redirects.c aux_exec.c aux_rdrc.c heredocs.c
-BUILTINS_F = builtins.c export.c env.c echo.c cd.c pwd.c env_builtins.c unset.c exit.c show_export.c
+BUILTINS_F = builtins.c export.c env.c echo.c cd.c pwd.c env_builtins.c unset.c exit.c show_export.c aux_export.c
 ENV_F = env.c expand_env.c aux_expand.c quote_remover.c relexer.c
 
 SRC = $(addprefix src/, $(SRC_F))

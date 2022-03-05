@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/05 18:27:01 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/05 21:48:18 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ void	exitchan(t_cmd **cmd);
 void	exit_exec(t_cmd **cmd);
 int		export_exec(t_cmd *cmd);
 void	show_export(void);
+int		exist_env(char *str);
 
 /* get_path.c */
 
