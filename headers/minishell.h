@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/04 09:24:42 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/05 22:06:04 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	free_data(void);
 
 void	init_env(char **env);
 char	*get_env(const char *const str);
-void	free_env(void);
+int		free_env(void);
 
 /* lexer.c */
 
@@ -184,10 +184,12 @@ int		cd_exec(t_cmd *cmd);
 int		env_builtins(t_cmd **cmds);
 int		cd(t_cmd *cmd);
 void	unset(t_cmd *cmd);
+void	unset_exec(t_cmd *cmd);
 void	exitchan(t_cmd **cmd);
 void	exit_exec(t_cmd **cmd);
 int		export_exec(t_cmd *cmd);
 void	show_export(void);
+int		exist_env(char *str);
 
 /* get_path.c */
 
