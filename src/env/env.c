@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/03/03 22:26:09 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/04 13:27:48 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ void	init_env(char **env)
 		return (set_minienv());
 	g_data.env = ft_calloc(g_data.sz_env, sizeof(char *));
 	if (!g_data.env)
-	{
-		perror("init_env");
-		exit(0);
-	}
+		exit_error("malloc");
 	tmp_env = g_data.env;
 	while (*env)
 	{
