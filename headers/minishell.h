@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 17:49:29 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/05 22:06:04 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:13:23 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int		free_env(void);
 /* lexer.c */
 
 t_list	*lexer(const char *line);
+
+/* minilexer */
+
+t_list	*minilexer(const char *line);
 
 /* quote_checker.c */
 

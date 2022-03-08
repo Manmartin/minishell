@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 11:04:30 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/02 13:06:26 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/08 16:14:21 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	relexer_args(t_cmd **cmds, int i)
 	while (cmds[i]->argv[++j])
 	{
 		if (cmds[i]->was_exp[j])
-			ft_lstadd_back(&aux, lexer(cmds[i]->argv[j]));
+			ft_lstadd_back(&aux, minilexer(cmds[i]->argv[j]));
 		else
 			ft_lstadd_back(&aux, ft_lstnew(ft_strdup(cmds[i]->argv[j])));
 	}
@@ -72,7 +72,7 @@ static void	relexer_rdrc(t_cmd **cmds, t_list *rdrc, int i)
 	while (rdrc)
 	{
 		if (cmds[i]->rwas_exp[j])
-			ft_lstadd_back(&aux, lexer(((t_rdtns *)rdrc->content)->file));
+			ft_lstadd_back(&aux, minilexer(((t_rdtns *)rdrc->content)->file));
 		else
 			ft_lstadd_back(&aux,
 				ft_lstnew(ft_strdup(((t_rdtns *)rdrc->content)->file)));

@@ -13,7 +13,7 @@ AUX_F = strings.c shell_exit.c
 PARSER_F =  parse_string.c parser.c free_cmds.c syntax_errors.c quote_checker.c	lexer.c aux_parser.c
 EXEC_F = executor.c redirects.c aux_exec.c aux_rdrc.c heredocs.c
 BUILTINS_F = builtins.c export.c env.c echo.c cd.c pwd.c env_builtins.c unset.c exit.c show_export.c aux_export.c
-ENV_F = env.c expand_env.c aux_expand.c quote_remover.c relexer.c
+ENV_F = env.c expand_env.c aux_expand.c quote_remover.c relexer.c minilexer.c
 
 SRC = $(addprefix src/, $(SRC_F))
 SRC += $(addprefix src/utils/, $(AUX_F))
