@@ -6,7 +6,7 @@
 /*   By: manmarti <manmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:38:25 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/08 17:34:50 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:31:09 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,19 @@ static const char	*make_arg(const char *line, t_flags *flags)
 		{
 			flags->s_qts = !flags->s_qts;
 			if (!flags->s_qts)
+			{
+				line++;
 				break ;
+			}
 		}
 		else if (*line == '"' && !flags->s_qts)
 		{
 			flags->d_qts = !flags->d_qts;
 			if (!flags->d_qts)
+			{
+				line++;
 				break ;
+			}
 		}
 		if (!flags->s_qts && !flags->d_qts && *line == ' ')
 			break ;
