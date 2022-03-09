@@ -6,7 +6,7 @@
 /*   By: acrucesp <acrucesp@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 00:09:38 by acrucesp          #+#    #+#             */
-/*   Updated: 2022/03/08 14:44:41 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:09:01 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ static void	set_minienv(void)
 	char	*path;
 	int		size;
 
-	basics = ft_calloc(8, sizeof(char *));
+	basics = ft_calloc(6, sizeof(char *));
 	g_data.env = basics;
 	if (basics == NULL)
 		exit_error("calloc");
-	g_data.sz_env = 8;
+	g_data.sz_env = 6;
 	basics[0] = ft_strdup("PATH=/bin");
-	basics[1] = ft_strdup("SHLVL=1");
 	size = 4096;
 	path = ft_calloc(sizeof(char), size);
 	path = getcwd(path, size);

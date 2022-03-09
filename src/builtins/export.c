@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 09:40:13 by manuel            #+#    #+#             */
-/*   Updated: 2022/03/05 21:46:32 by acrucesp         ###   ########.fr       */
+/*   Updated: 2022/03/09 20:33:19 by acrucesp         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,10 @@ int	parse_arg(t_cmd *cmd, int i)
 	{
 		while (cmd->argv[i][++j])
 		{
-			if (!ft_isexp(cmd->argv[i][j]) && cmd->argv[i][j] != '=')
-				return (0);
-			else if (cmd->argv[i][j] == '=')
+			if (cmd->argv[i][j] == '=')
 				return (1);
-			j++;
+			else if (!ft_isexp(cmd->argv[i][j]) && cmd->argv[i][j] != '=')
+				return (0);
 		}	
 	}
 	else
