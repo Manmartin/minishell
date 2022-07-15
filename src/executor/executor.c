@@ -6,7 +6,7 @@
 /*   By: manuel <manuel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:51:57 by manmarti          #+#    #+#             */
-/*   Updated: 2022/03/04 10:17:45 by manmarti         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:44:13 by manmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ static void	create_pipes(int (*fd)[2][2], t_cmd **cmd)
 {
 	int	pid;
 
-	close((*fd)[0][WRITE_FD]);
 	if (cmd[1] != NULL)
 		pipe((*fd)[1]);
+	close((*fd)[0][WRITE_FD]);
 	pid = fork();
 	if (pid == 0)
 	{
